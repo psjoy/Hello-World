@@ -1,2 +1,0 @@
-Image was saved by these Clonezilla-related packages:
- drbl-1.9.6-15 clonezilla-2.3.6-19 mkswap-uuid-0.1.1-1 drbl-partimage-0.6.8-1drbl drbl-ntfsprogs-2.0.0-4 partclone-0.2.9-1drbl drbl-chntpw-0.0.20040818-7 drbl-lzop-1.02-0.8drbl pigz-2.1.6-1 pbzip2-1.1.1-1drbl udpcast-20100130-2
