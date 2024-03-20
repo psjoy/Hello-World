@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Brevet Clock</title>
+    <style>table{font-size:x-large;border-style:hidden;}td{border-color:lightgray;border-width:5px;border-style:ridge;}
+    font-size:x-large;
+    </style>
+</head>
+<body>
+
+
+
+    
+    
+<!-- Tab links -->
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'Setting')" id="defaultOpen" style="font-size:large;">출발 설정</button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')" style="font-size:large;">경과시간 표시</button>
+  <button class="tablinks" onclick="openCity(event, 'Tokyo')" style="font-size:large;">기타</button>
+</div>
+
+<br />
+<!-- Tab content -->
+<div id="Setting" class="tabcontent">
+<br />
+<div class="selectBox">
+<table width="400">
+<tr><td align="center" colspan=3>
+  <label for="kind">브레베 종류 </label>
+  <select name="kind" id="kind">
+  <option value="13.5">200km</option>
+  <option value="20">300km</option>
+  <option value="30">400km</option>
+  <option value="40">600km</option>
+  <option value="75">1000km</option>
+  <option value="90">1200km</option>
+  <option value="24">Flash</option>
+  </select></td></tr>
+
+<tr align=center><td>
+  <label for="year">년 </label>
+  <select name="year" id="year">
+  <option value="2024">2024</option>
+  <option value="2025">2025</option>
+  <option value="2026">2026</option>
+  <option value="2027">2027</option>
+</select></td>
+
+  <td><label for="month">   월 </label>
+  <select name="month" id="month">
+  <option value="0">1</option>
+  <option value="1">2</option>
+  <option value="2">3</option>
+  <option value="3">4</option>
+  <option value="4">5</option>
+  <option value="5">6</option>
+  <option value="6">7</option>
+  <option value="7">8</option>
+  <option value="8">9</option>
+  <option value="9">10</option>
+  <option value="10">11</option>
+  <option value="11">12</option>
+</select></td>
+    
+  <td><label for="date">   일 </label>
+  <select name="date" id="date">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+  <option value="9">9</option>
+  <option value="10">10</option>
+  <option value="11">11</option>
+  <option value="12">12</option>
+  <option value="13">13</option>
+  <option value="14">14</option>
+  <option value="15">15</option>
+  <option value="16">16</option>
+  <option value="17">17</option>
+  <option value="18">18</option>
+  <option value="19">19</option>
+  <option value="20">20</option>
+  <option value="21">21</option>
+  <option value="22">22</option>
+  <option value="23">23</option>
+  <option value="24">24</option>
+  <option value="25">25</option>
+  <option value="26">26</option>
+  <option value="27">27</option>
+  <option value="28">28</option>
+  <option value="29">29</option>
+  <option value="30">30</option>
+  <option value="31">11</option>
+</select></td></tr>
+<br />
+<tr align=center><td></td><td>
+  <label for="hour">시 </label>
+  <select name="hour" id="hour">
+  <option value="0">0</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+  <option value="9">9</option>
+  <option value="10">10</option>
+  <option value="11">11</option>
+  <option value="12">12</option>
+  <option value="13">13</option>
+  <option value="14">14</option>
+  <option value="15">15</option>
+  <option value="16">16</option>
+  <option value="17">17</option>
+  <option value="18">18</option>
+  <option value="19">19</option>
+  <option value="20">20</option>
+  <option value="21">21</option>
+  <option value="22">22</option>
+  <option value="23">23</option>
+</select></td>
+
+  <td><label for="minute"> 분 </label>
+  <select name="minute" id="minute">
+  <option value="0">0</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+  <option value="9">9</option>
+  <option value="10">10</option>
+  <option value="11">11</option>
+  <option value="12">12</option>
+  <option value="13">13</option>
+  <option value="14">14</option>
+  <option value="15">15</option>
+  <option value="16">16</option>
+  <option value="17">17</option>
+  <option value="18">18</option>
+  <option value="19">19</option>
+  <option value="20">20</option>
+  <option value="21">21</option>
+  <option value="22">22</option>
+  <option value="23">23</option>
+  <option value="24">24</option>
+  <option value="25">25</option>
+  <option value="26">26</option>
+  <option value="27">27</option>
+  <option value="28">28</option>
+  <option value="29">29</option>
+  <option value="30">30</option>
+  <option value="31">31</option>
+  <option value="32">32</option>
+  <option value="33">33</option>
+  <option value="34">34</option>
+  <option value="35">35</option>
+  <option value="36">36</option>
+  <option value="37">37</option>
+  <option value="38">38</option>
+  <option value="39">39</option>
+  <option value="40">40</option>
+  <option value="41">41</option>
+  <option value="42">42</option>
+  <option value="43">43</option>
+  <option value="44">44</option>
+  <option value="45">45</option>
+  <option value="46">46</option>
+  <option value="47">47</option>
+  <option value="48">48</option>
+  <option value="49">49</option>
+  <option value="50">50</option>
+  <option value="51">51</option>
+  <option value="52">52</option>
+  <option value="53">53</option>
+  <option value="54">54</option>
+  <option value="55">55</option>
+  <option value="56">56</option>
+  <option value="57">57</option>
+  <option value="58">58</option>
+  <option value="59">59</option>
+</select></td></tr>
+<tr><td align="center" colspan=3><label for="startKind">출발종류</label>
+  <select name="startKind" id="startKind">
+  <option value="1">동시 출발</option>
+  <option value="2">30분, 2회</option>
+  <option value="3">30분, 3회</option>
+  <option value="4">30분, 4회</option>
+  <option value="5">30분, 5회</option>
+  <option value="6">15분, 3회</option>
+  <option value="7">15분, 5회</option>
+  <option value="8">15분, 7회</option>
+  <option value="9">10분, 4회</option>
+  <option value="10">10분, 7회</option>
+  <option value="11">10분, 10회</option>
+  <option value="12">10분, 13회</option>
+</td></tr>
+</table>
+</div>
+</div>
+
+<div id="Paris" class="tabcontent">
+<br />
+<table width="70%" height="240" align="left">
+<colgroup><col style="background:blue;"></colgroup>
+  <tr align="center" style="background-color:wheat;"><td>출 발</td><td id="start" style="color:black;">출   발: 06:00:00</h1></td></tr>
+  <tr align="center" style="background-color:khaki;"><td>현 재</td><td id="clock1" style="color:blue;">clock1</h1></td></tr>
+  <tr align="center" style="background-color:wheat;"><td>경 과</td><td id="clock2" style="color:blue;">clock2</h1></td></tr>
+  <tr align="center" style="background-color:khaki;"><td>Tick</td><td id="clockTick" style="color:gray;">clockTick</h1></td></tr>
+</table>
+</div>
+
+<div id="Tokyo" class="tabcontent">
+  <h3>Tokyo</h3>
+  <p>Tokyo is the capital of Japan.</p>
+</div>
+
+
+
+  <script>
+    let startTime = new Date(2024,2,20,6,0,0);
+
+    var start = document.getElementById("start");
+    var clock1 = document.getElementById("clock1");
+    var clock2 = document.getElementById("clock2");
+    var clockTick = document.getElementById("clockTick");
+
+    function clock(id) {
+    }
+        
+    function callClock() {
+        var now = new Date();
+
+        var yy = document.getElementById("year").value;
+        var mm = Number(document.getElementById("month").value)+1;
+        var dd = document.getElementById("date").value;
+        var hh = document.getElementById("hour").value;
+        var min = document.getElementById("minute").value;
+        document.getElementById("start").innerText = `${mm}월 ${dd}일 ${hh<10?`0${hh}`:min}:${min<10?`0${min}`:min}`;
+        
+        var month = now.getMonth();
+        var date = now.getDate();
+        var hours = now.getHours();
+        var minutes = now.getMinutes();
+        var seconds = now.getSeconds();
+
+        document.getElementById("clock1").innerText = 
+        `${month+1}월 ${date}일 `+
+        `${hours<10?`0${hours}`:hours}:${minutes<10?`0${minutes}`:minutes}:${seconds<10?`0${seconds}`:seconds}`;
+        
+        var d = diffGetTime(startTime, now);
+        var hour = Math.floor(d/3600);
+        var min = Math.floor((d-hour*3600)/60);
+        var sec = d%60;
+        
+        document.getElementById("clock2").innerText = `${hour}:${min<10?`0${min}`:min}:${sec<10?`0${sec}`:sec}`;
+        document.getElementById("clockTick").innerText = `${d}sec`;
+    }
+
+    function diffGetTime(date1, date2) {
+      var diff = (date2.getTime() - date1.getTime())/1000;
+      //return diff;
+      return Math.floor(diff);
+    }
+
+    function startTimeSet() {
+        var now = new Date();
+        
+        var year = now.getFullYear();
+        var month = now.getMonth();
+        var date = now.getDate();
+        var hour = 6;
+        var minute = 0;
+        startTime = new Date(year,month,date,hour,minute);
+        
+        document.getElementById("year").value = year;
+        document.getElementById("month").value = month;
+        document.getElementById("date").value = date;
+        document.getElementById("hour").value = hour;
+        document.getElementById("minute").value = minute;
+    }
+        
+        
+    function openCity(evt, tabName) {
+      var i, tabcontent, tablinks;
+      
+      startTimeSet();
+
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+        tablinks[i].style.backgroundColor = "gray";
+      }
+
+      document.getElementById(tabName).style.display = "block";
+      evt.currentTarget.className += " active";
+      evt.currentTarget.style.backgroundColor = "yellow";
+    }        
+        
+        document.getElementById("defaultOpen").click();
+        startTimeSet();
+        callClock();
+        
+        setInterval(callClock, 1000); // 1초마다 실행
+    </script>
+</body>
+</html>
