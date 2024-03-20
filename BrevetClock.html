@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -15,9 +16,9 @@
     
 <!-- Tab links -->
 <div class="tab">
-  <button class="tablinks" onclick="openCity(event, 'Setting')" id="defaultOpen" style="font-size:large;">출발 설정</button>
-  <button class="tablinks" onclick="openCity(event, 'Paris')" style="font-size:large;">경과시간 표시</button>
-  <button class="tablinks" onclick="openCity(event, 'Tokyo')" style="font-size:large;">기타</button>
+  <button class="tablinks" onclick="openCity(event, 'Setting')" id="defaultOpen" style="font-size:x-large;">출발 설정</button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')" style="font-size:x-large;">경과시간 표시</button>
+  <button class="tablinks" onclick="openCity(event, 'Tokyo')" style="font-size:x-large;">기타</button>
 </div>
 
 <br />
@@ -25,7 +26,7 @@
 <div id="Setting" class="tabcontent">
 <br />
 <div class="selectBox">
-<table width="400">
+<table width="100%">
 <tr><td align="center" colspan=3>
   <label for="kind">브레베 종류 </label>
   <select name="kind" id="kind">
@@ -211,7 +212,7 @@
 
 <div id="Paris" class="tabcontent">
 <br />
-<table width="70%" height="240" align="left">
+<table width="100%" height="240" align="left" id="statusTable">
 <colgroup><col style="background:blue;"></colgroup>
   <tr align="center" style="background-color:wheat;"><td>출 발</td><td id="start" style="color:black;">출   발: 06:00:00</h1></td></tr>
   <tr align="center" style="background-color:khaki;"><td>현 재</td><td id="clock1" style="color:blue;">clock1</h1></td></tr>
@@ -315,6 +316,8 @@
         document.getElementById("defaultOpen").click();
         startTimeSet();
         callClock();
+        
+        document.getElementById("statusTable").insertRow(0);
         
         setInterval(callClock, 1000); // 1초마다 실행
     </script>
