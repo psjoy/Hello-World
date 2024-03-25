@@ -9,9 +9,13 @@
     .select{font-size:x-large;background:peachpuff;border:2px solid sandybrown;border-radius:4px;padding:2px;}
     .addDel{font-size:x-large;background:peachpuff;border:2px solid sandybrown;border-radius:4px;padding:2px;}
     .tablinks{font-size:x-large;border:3px solid gray;border-radius:6px;padding:6px;}
-    .oddline{text-align:center;background-color:wheat;}
-    .evenline{text-align:center;background-color:khaki;}
-    .timeOver{text-align:center;background-color:yellow;color:red;}
+    .title1{font-size:50px;text-align:center;background-color:wheat;}
+    .title2{font-size:50px;text-align:center;background-color:khaki;}
+    .titleline{font-size:50px;text-align:center;background-color:#ccccff;}
+    .oddline{font-size:50px;text-align:center;background-color:wheat;}
+    .evenline{font-size:50px;text-align:center;background-color:khaki;}
+    .expired{font-size:50px;text-align:center;background-color:yellow;color:red;}
+    .grayed{font-size:50px;text-align:center;background-color:#666666;color:#336666;}
     font-size:x-large;
     </style>
 </head>
@@ -40,7 +44,7 @@
   <option value="40">600km</option>
   <option value="75">1000km</option>
   <option value="90">1200km</option>
-  <option value="24">Flèche</option>
+  <option value="24">Fleche</option>
   </select></td></tr>
 <tr><td align="center" colspan=3><label for="startGap">출발간격 </label>
   <select name="startGap" id="startGap" class="select">
@@ -215,14 +219,14 @@
 <br />
 <table width="100%" align="left">
 <colgroup><col style="background:khaki;"></colgroup>
-  <tr class="oddline"><td>출발 시간</td><td id="start" style="color:black;">.</td></tr>
-  <tr class="evenline"><td>현재 시간</td><td id="current" style="color:blue;">.</td></tr>
+  <tr class="title1"><td>출발 시간</td><td id="start" style="color:black;">.</td></tr>
+  <tr class="title2"><td>현재 시간</td><td id="current" style="color:blue;">.</td></tr>
 </table>
-<div style="height:100px;">&nbsp;</div>
+<div style="height:200px;">&nbsp;</div>
 
 <table width="100%" align="left" id="statusTable">
-  <tr class="oddline"><td>출발</td><td>마감</td><td>경과</td><td>남음</td></tr>
-  <tr class="evenline"><td>.</td><td></td><td></td><td></td></tr>
+  <tr class="titleline"><td>출발</td><td>마감</td><td>경과</td><td>남음</td></tr>
+  <tr class="evenline"  onclick="toggleView(this)"><td>.</td><td></td><td></td><td></td></tr>
 </table>
 </div>
 
@@ -233,46 +237,95 @@
 
 
 
- <script>
-function buildTimeStr(start, now, limit, elem) {
-    var m = start.getMonth();
-    var d = start.getDate();
-    var h = start.getHours();
-    var min = start.getMinutes();
-    var disp = `${h}:${min<10?`0${min}`:min}`
-    elem.cells[0].innerText=disp;
+<script>
+class Timer {
+  start;
+  now;
+  finish;
+  elapse;
+  reamin;
+  constructor(s,f,n) {
+    this.start=s;
+    this.finish=f;
+    this.now=n;
+    this.elapse=this.now-this.start;
+    this.reamin=this.finish-this.now;
+  }
+}
 
-    var ms = start.getTime()+limit*60*60000;
-    var newTime = new Date(ms);
-    h=newTime.getHours();
-    min =newTime.getMinutes(); 
-    elem.cells[1].innerText=`${h}:${min<10?`0${min}`:min}`;
+let onlyOneView = 0;
 
-    var delta = diffGetTime(start, now);
-    h = Math.floor(delta/3600);
-    min = Math.floor((delta-h*3600)/60);
-    //s = d%60;
-    disp=`${h}:${min<10?`0${min}`:min}`;
-    elem.cells[2].innerText = disp;
-    
-    limit=limit*3600+60;
-    delta = limit-delta;
-    if (delta<0) {
-        delta=-delta+60;
-        var sign="-";
-        elem.className="timeOver";
-    } else {
-      var sign="";
+function toggleView(t) {
+
+  const table = document.getElementById('statusTable');
+  const len = table.rows.length;
+  const pos = t.rowIndex;
+
+  if (onlyOneView == 0) {
+    for (i=2;i<len;i++) {
+      if (i!=pos) {
+        table.rows[i].className="grayed";
+        onlyOneView = 1;
+      } else {
+      }
     }
-    h = Math.floor(delta/3600);
-    min = Math.floor((delta-h*3600)/60);
-    elem.cells[3].innerText=sign+`${h}:${min<10?`0${min}`:min}`;
+    return;
+  }
+
+  for (i=2;i<len;i++) {
+    if (i%2) {
+      table.rows[i].className="oddline";
+    } else {
+      table.rows[i].className="evenline";
+    }
+  }
+  onlyOneView = 0;
+}
+
+function toggleView1(t) {
+  console.log(t);
+}
+
+function buildTimeStr(start, now, limit, elem) {
+  var d = start.getDate();
+  var h = start.getHours();
+  var min = start.getMinutes();
+  var disp = `${h}:${min<10?`0${min}`:min}`
+  elem.cells[0].innerText=disp;
+  /* elem.cells[0].button.innerText = disp; */
+  
+  var ms = start.getTime()+limit*60*60000;
+  var newTime = new Date(ms);
+  h=newTime.getHours();
+  min =newTime.getMinutes(); 
+  elem.cells[1].innerText=`${h}:${min<10?`0${min}`:min}`;
+  
+  var delta = diffGetTime(start, now);
+  h = Math.floor(delta/3600);
+  min = Math.floor((delta-h*3600)/60);
+  //s = d%60;
+  disp=`${h}:${min<10?`0${min}`:min}`;
+  elem.cells[2].innerText = disp;
+  
+  limit=limit*3600+60;
+  delta = limit-delta;
+  if (delta<0) {
+    delta=-delta+60;
+    var sign="-";
+    elem.className="expired";
+  } else {
+    var sign="";
+  }
+  h = Math.floor(delta/3600);
+  min = Math.floor((delta-h*3600)/60);
+  elem.cells[3].innerText=sign+`${h}:${min<10?`0${min}`:min}`;
+  var m = start.getMonth();
 }
 
 function addEntry(event, how) {
   const table = document.getElementById('statusTable');
   const minLen = 3;
-  const maxLen =20;
+  const maxLen =11;
   var len = table.rows.length;
   
   if (how==1 && len<maxLen) {
@@ -286,6 +339,10 @@ function addEntry(event, how) {
     } else {
         newRow.className="evenline";
     }
+    newRow.onclick = function(){ return function(){toggleView(this);
+               /* id = this.rowIndex;
+               console.log("id:" + id); */
+        };}(newRow);
     
     const newCell1 = newRow.insertCell(0);
     newRow.insertCell(1);
@@ -294,50 +351,46 @@ function addEntry(event, how) {
     newCell1.innerText = '.';
     
     callClock();
-    return;
   }
-  
+
   if (how==-1 && len > minLen) {
     table.deleteRow(len-1);
   }
 }
-
+  
 function callClock() {
-    var now = new Date();
-    var yy = document.getElementById("year").value;
-    var mm = Number(document.getElementById("month").value);
-    var dd = document.getElementById("date").value;
-    var hh = document.getElementById("hour").value;
-    var min = document.getElementById("minute").value;
+  var now = new Date();
 
-    startTime = new Date(yy,mm, dd, hh, min);
-    document.getElementById("start").innerText =` ${mm+1}월 ${dd}일 ${hh<10?`0${hh}`:hh}:${min<10?`0${min}`:min}:00`;
-    
-    var month = now.getMonth();
-    var date = now.getDate();
-    var hours = now.getHours();
-    var minutes = now.getMinutes();
-    var seconds = now.getSeconds();
-
-    document.getElementById("current").innerText = 
-    ` ${month+1}월 ${date}일 ${hours<10?`0${hours}`:hours}:${minutes<10?`0${minutes}`:minutes}:${seconds<10?`0${seconds}`:seconds}`;
-    
-    const table = document.getElementById('statusTable');
-    const len = table.rows.length; 
-    const sDiff = document.getElementById('startGap').value;
-    const limitTime = document.getElementById('brevetKind').value;
-    for (i=2;i<len;i++) {
-      if (i%2) {
-        table.rows[i].className="oddline";
-      } else {
-        table.rows[i].className="evenline";
-      }
-      var ms = startTime.getTime() + sDiff*(i-2)*60000;
-      //var ms = startTime.getTime()+1000;
-      var newTime = new Date(ms);
-      buildTimeStr(newTime,now,limitTime,table.rows[i]);
-    }
+  var yy = document.getElementById("year").value;
+  var mm = Number(document.getElementById("month").value);
+  var dd = document.getElementById("date").value;
+  var hh = document.getElementById("hour").value;
+  var min = document.getElementById("minute").value;
+  
+  startTime = new Date(yy,mm, dd, hh, min);
+  document.getElementById("start").innerText =` ${mm+1}월 ${dd}일 ${hh<10?`0${hh}`:hh}:${min<10?`0${min}`:min}:00`;
+  
+  var month = now.getMonth();
+  var date = now.getDate();
+  var hours = now.getHours();
+  var minutes = now.getMinutes();
+  var seconds = now.getSeconds();
+  
+  document.getElementById("current").innerText = 
+  ` ${month+1}월 ${date}일 ${hours<10?`0${hours}`:hours}:${minutes<10?`0${minutes}`:minutes}:${seconds<10?`0${seconds}`:seconds}`;
+  
+  const table = document.getElementById('statusTable');
+  const len = table.rows.length; 
+  const sDiff = document.getElementById('startGap').value;
+  const limitTime = document.getElementById('brevetKind').value;
+  for (i=2;i<len;i++) {
+    var ms = startTime.getTime() + sDiff*(i-2)*60000;
+    //var ms = startTime.getTime()+1000;
+    var newTime = new Date(ms);
+    buildTimeStr(newTime,now,limitTime,table.rows[i]);
+  }
 }
+
 
 function diffGetTime(date1, date2) {
   var diff = (date2.getTime() - date1.getTime())/1000;
@@ -345,23 +398,23 @@ function diffGetTime(date1, date2) {
 }
 
 function initStartTime() {
-    var now = new Date();
-    
-    var year = now.getFullYear();
-    var month = now.getMonth();
-    var date = now.getDate();
-    var hour = 6;
-    var minute = 0;
-    startTime = new Date(year,month,date,hour,minute);
-    
-    document.getElementById("year").value = year;
-    document.getElementById("month").value = month;
-    document.getElementById("date").value = date;
-    document.getElementById("hour").value = hour;
-    document.getElementById("minute").value = minute;
-
-    document.getElementById("startGap").value = 30;
+  var now = new Date();
+  var year = now.getFullYear();
+  var month = now.getMonth();
+  var date = now.getDate();
+  var hour = 6;
+  var minute = 0;
+  startTime = new Date(year,month,date,hour,minute);
+  
+  document.getElementById("year").value = year;
+  document.getElementById("month").value = month;
+  document.getElementById("date").value = date;
+  document.getElementById("hour").value = hour;
+  document.getElementById("minute").value = minute;
+  
+  document.getElementById("startGap").value = 30;
 }
+
     
 function openTab(evt, tabName) {
   var i, tabcontent, tablinks;
@@ -390,6 +443,14 @@ initStartTime();
 callClock();
 
 document.getElementById("statusTable").insertRow(0);
+
+/* const tbody = document.querySelector('#position tbody');
+tbody.addEventListener('click', function (e) {
+  const cell = e.target.closest('td');
+  if (!cell) {return;} // Quit, not clicked on a cell
+  const row = cell.parentElement;
+  console.log(cell.innerHTML, row.rowIndex, cell.cellIndex);
+}); */
 
 setInterval(callClock, 1000); // 1초마다 실행
 </script>
