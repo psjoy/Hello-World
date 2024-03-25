@@ -9,13 +9,15 @@
     .select{font-size:x-large;background:peachpuff;border:2px solid sandybrown;border-radius:4px;padding:2px;}
     .addDel{font-size:x-large;background:peachpuff;border:2px solid sandybrown;border-radius:4px;padding:2px;}
     .tablinks{font-size:x-large;border:3px solid gray;border-radius:6px;padding:6px;}
-    .title1{font-size:50px;text-align:center;background-color:wheat;}
-    .title2{font-size:50px;text-align:center;background-color:khaki;}
-    .titleline{font-size:50px;text-align:center;background-color:#ccccff;}
-    .oddline{font-size:50px;text-align:center;background-color:wheat;}
-    .evenline{font-size:50px;text-align:center;background-color:khaki;}
-    .expired{font-size:50px;text-align:center;background-color:yellow;color:red;}
-    .grayed{font-size:50px;text-align:center;background-color:#666666;color:#336666;}
+    .title1, .title2, .titleline, .oddline, .evenline, .expired, .highlight, .grayed {font-size:50px;text-align:center;}
+    .title1{background-color:wheat;}
+    .title2{background-color:khaki;}
+    .titleline{background-color:#ccccff;}
+    .oddline{background-color:wheat;}
+    .evenline{text-align:center;background-color:khaki;}
+    .expired{text-align:center;background-color:yellow;color:red;}
+    .highlight{font-size:50px;background-color:#ff99ff;color:#3333cc;font-weight:1000;}
+    .grayed{text-align:center;background-color:#666666;color:#336666;}
     font-size:x-large;
     </style>
 </head>
@@ -222,8 +224,7 @@
   <tr class="title1"><td>출발 시간</td><td id="start" style="color:black;">.</td></tr>
   <tr class="title2"><td>현재 시간</td><td id="current" style="color:blue;">.</td></tr>
 </table>
-<div style="height:200px;">&nbsp;</div>
-
+<div id="space" style="height:250px;">&nbsp;</div>
 <table width="100%" align="left" id="statusTable">
   <tr class="titleline"><td>출발</td><td>마감</td><td>경과</td><td>남음</td></tr>
   <tr class="evenline"  onclick="toggleView(this)"><td>.</td><td></td><td></td><td></td></tr>
@@ -232,31 +233,33 @@
 
 <div id="etcEtc" class="tabcontent">
   <h3>기타</h3>
-  <p>기타 표시 영역.</p>
+  <p><label for="fontSize1">시간 글꼴 크기 </label>
+  <select name="fontSize1" id="fontSize1" class="select">
+  <option value="20">보통</option>
+  <option value="32">크게</option>
+  <option value="44">더 크게</option>
+  <option value="50">아주 크게</option>
+  <option value="72">매우 아주 크게</option>
+  </select></p>
+
+  <p><label for="fontSize2">현황 글꼴 크기 </label>
+  <select name="fontSize2" id="fontSize2" class="select">
+  <option value="20">보통</option>
+  <option value="32">크게</option>
+  <option value="44">더 크게</option>
+  <option value="50">아주 크게</option>
+  <option value="72">매우 아주 크게</option>
+  </select></p>
 </div>
 
 
 
 <script>
-class Timer {
-  start;
-  now;
-  finish;
-  elapse;
-  reamin;
-  constructor(s,f,n) {
-    this.start=s;
-    this.finish=f;
-    this.now=n;
-    this.elapse=this.now-this.start;
-    this.reamin=this.finish-this.now;
-  }
-}
-
 let onlyOneView = 0;
+let fontSize1 = 40;
+let fontSize2 = 40;
 
 function toggleView(t) {
-
   const table = document.getElementById('statusTable');
   const len = table.rows.length;
   const pos = t.rowIndex;
@@ -267,6 +270,9 @@ function toggleView(t) {
         table.rows[i].className="grayed";
         onlyOneView = 1;
       } else {
+        table.rows[pos].cells[2].className="highlight"
+        /* table.rows[i].className="grayed"; */
+        /* console.log(table.rows[pos].cells[2]); */
       }
     }
     return;
@@ -278,6 +284,7 @@ function toggleView(t) {
     } else {
       table.rows[i].className="evenline";
     }
+    table.rows[i].cells[2].className=""
   }
   onlyOneView = 0;
 }
@@ -357,10 +364,58 @@ function addEntry(event, how) {
     table.deleteRow(len-1);
   }
 }
+
+function changeStylesheetRule(stylesheet, selector, property, value) {
+	selector = selector.toLowerCase();
+	property = property.toLowerCase();
+	value = value.toLowerCase();
+
+	for(var i = 0; i < stylesheet.cssRules.length; i++) {
+		var rule = stylesheet.cssRules[i];
+		if(rule.selectorText === selector) {
+			rule.style[property] = value;
+			return;
+		}
+	}
+	stylesheet.insertRule(selector + " { " + property + ": " + value + "; }", 0);
+}
+
+function setClockTableFontSize(s) {
+  var px = `${s}px`;
+  s= s*4.5+20;
+  var px2= `${s}px`;
+  changeStylesheetRule(document.styleSheets[0], ".title1", "font-size", px);
+  changeStylesheetRule(document.styleSheets[0], ".title2", "font-size", px);
+  document.getElementById("space").style.height=px2;
+}
+  
+function setMainTableFontSize(s) {
+  /* changeStylesheetRule(document.styleSheets[0], ".highlight", "color", "green"); */
+  var px = `${s}px`;
+  s= s*1.3;
+  var px2= `${s}px`;
+  changeStylesheetRule(document.styleSheets[0], ".highlight", "font-size", px2);
+  changeStylesheetRule(document.styleSheets[0], ".evenline", "font-size", px);
+  changeStylesheetRule(document.styleSheets[0], ".oddline", "font-size", px);
+  changeStylesheetRule(document.styleSheets[0], ".expired", "font-size", px);
+  changeStylesheetRule(document.styleSheets[0], ".grayed", "font-size", px);
+  changeStylesheetRule(document.styleSheets[0], ".titleline", "font-size", px);
+  /* console.log("`${s}px`"); */
+}
   
 function callClock() {
-  var now = new Date();
+  const fSize1 = document.getElementById('fontSize1').value;
+  if (fSize1!=fontSize1) {
+    setClockTableFontSize(fSize1);
+    fontSize1=fSize1;
+  }
+  const fSize2 = document.getElementById('fontSize2').value;
+  if (fSize2!=fontSize2) {
+    setMainTableFontSize(fSize2);
+    fontSize2=fSize2;
+  }
 
+  var now = new Date();
   var yy = document.getElementById("year").value;
   var mm = Number(document.getElementById("month").value);
   var dd = document.getElementById("date").value;
@@ -413,6 +468,9 @@ function initStartTime() {
   document.getElementById("minute").value = minute;
   
   document.getElementById("startGap").value = 30;
+
+  document.getElementById("fontSize1").value = 44;
+  document.getElementById("fontSize2").value = 44;
 }
 
     
@@ -444,13 +502,6 @@ callClock();
 
 document.getElementById("statusTable").insertRow(0);
 
-/* const tbody = document.querySelector('#position tbody');
-tbody.addEventListener('click', function (e) {
-  const cell = e.target.closest('td');
-  if (!cell) {return;} // Quit, not clicked on a cell
-  const row = cell.parentElement;
-  console.log(cell.innerHTML, row.rowIndex, cell.cellIndex);
-}); */
 
 setInterval(callClock, 1000); // 1초마다 실행
 </script>
