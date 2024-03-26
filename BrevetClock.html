@@ -362,10 +362,10 @@ function buildTimeStr(n,start, now, limit, elem) {
   if (delta<0) {
     delta=-delta+60;
     var sign="-";
-    setClassName(elem,2);
+    if(onlyOneView!=1)setClassName(elem,2);
   } else {
     var sign="";
-    setClassName(elem,n%2);
+    if(onlyOneView!=1)setClassName(elem,n%2);
   }
   h = Math.floor(delta/3600);
   min = Math.floor((delta-h*3600)/60);
