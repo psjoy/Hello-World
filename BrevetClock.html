@@ -15,7 +15,8 @@
     .titleline{background-color:#ccccff;}
     .oddline{background-color:wheat;}
     .evenline{text-align:center;background-color:khaki;}
-    .expired{text-align:center;background-color:yellow;color:red;}
+    .expired1{text-align:center;background-color:#ffff00;color:#ff0000;}
+    .expired{text-align:center;background-color:#444444;color:#333333;}
     .highlight{font-size:50px;background-color:#ff99ff;color:#3333cc;font-weight:1000;}
     .grayed{text-align:center;background-color:#666666;color:#336666;}
     font-size:x-large;
@@ -29,7 +30,8 @@
 <div class="tab">
   <button class="tablinks" onclick="openTab(event, 'Setting')" id="defaultOpen"> 출발 설정 </button>&nbsp;&nbsp;
   <button class="tablinks" onclick="openTab(event, 'displayTimer')"> 경과시간 표시 </button>&nbsp;&nbsp;
-  <button class="tablinks" onclick="openTab(event, 'etcEtc')"> 기타 </button>
+  <button class="tablinks" onclick="openTab(event, 'etcEtc')"> 기타 </button>&nbsp;&nbsp;
+  <button class="tablinks" onclick="openTab(event, 'help')"> 도움말 </button>
 </div>
 
 <br />
@@ -48,7 +50,7 @@
   <option value="90">1200km</option>
   <option value="24">Fleche</option>
   </select></td></tr>
-<tr><td align="center" colspan=3><label for="startGap">출발간격 </label>
+<tr><td align="center" colspan=3><label for="startGap">출발 간격 </label>
   <select name="startGap" id="startGap" class="select">
   <option value="0">동시 출발</option>
   <option value="60">1시간 간격</option>
@@ -252,6 +254,40 @@
   </select></p>
 </div>
 
+<div id="help" class="tabcontent">
+<h3>출발 설정</h3>
+&nbsp;&nbsp;브레베 종류: 브레베의 거리를 선택합니다.<br />
+&nbsp;&nbsp;출발간격: 몇분 간격으로 출발할 것인지 선택합니다.<br />
+&nbsp;&nbsp;년: 브레베 개최 연도를 선택합니다.<br />
+&nbsp;&nbsp;월: 브레베 개최 월을 선택합니다.<br />
+&nbsp;&nbsp;일: 브레베 시작일을 선택합니다.<br />
+&nbsp;&nbsp;시,분: 첫 출발시간의 시, 분을 선택합니다.<br /><br /><br />
+<h3>경과시간 표시</h3>
+<h4>추가, 삭제 단추</h4>
+&nbsp;&nbsp;출발 추가&nbsp;&nbsp;: 출발 설정 탭의 출발 간격에서 선택한 시간 간격으로 출발 시간을 추가합니다.<br />
+&nbsp;&nbsp;출발 삭제&nbsp;&nbsp;: 출발 현황 표의 맨 마지막 출발 시간을 삭제합니다.<br />
+&nbsp;&nbsp;<h4>시간 표시</h4>
+&nbsp;&nbsp;출발 시간&nbsp;&nbsp;: 브레베의 첫 출발 시간을 표시합니다.<br />
+&nbsp;&nbsp;출발 삭제&nbsp;&nbsp;: 현재 시간을 표시합니다.<br />
+&nbsp;&nbsp;<h4>현황 표시</h4>
+&nbsp;&nbsp;출발&nbsp;&nbsp;: 출발 시간대를 표시합니다.<br />
+&nbsp;&nbsp;마감&nbsp;&nbsp;: 해당 출발의 마감 시간을 표시합니다.<br />
+&nbsp;&nbsp;경과&nbsp;&nbsp;: 해당 출발의 경과 시간을 표시합니다.<br />
+&nbsp;&nbsp;남음&nbsp;&nbsp;: 해당 출발의 남은 시간을 표시합니다.<br /><br />
+&nbsp;&nbsp;원하는 출발을 누르면 해당 출발만 강조되어 표시됩니다.<br />
+&nbsp;&nbsp;출발 현황 표의 아무 곳이나 누르면 다시 원래 표시로 돌아옵니다.<br /><br />
+&nbsp;&nbsp;마감 시간이 지난 출발은 어두운 색으로 변합니다.<br /><br /><br />
+<h3>기타</h3>
+&nbsp;&nbsp;시간 글꼴 크기: 경과시간 표시 탭에서 출발시간, 현재시간의 글꼴 크기를 조정합니다.<br />
+&nbsp;&nbsp;현황 글꼴 크기: 경과시간 표시 탑에서 출발, 마감, 경과, 남음 글꼴 크기를 조정합니다.<br /><br /><br />
+<h3>도움말</h3>
+&nbsp;&nbsp;지금 보이는 이 화면입니다.<br /><br /><br />
+<h3>Copyright</h3>
+&nbsp;&nbsp;Date&nbsp;&nbsp;&nbsp;&nbsp;: 2024. 3. 26. Tue.<br />
+&nbsp;&nbsp;Author&nbsp;: SJ Park, Randonneur<br />
+&nbsp;&nbsp;Rev&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 1.02<br />
+
+</div>
 
 
 <script>
@@ -264,36 +300,43 @@ function toggleView(t) {
   const len = table.rows.length;
   const pos = t.rowIndex;
 
-  if (onlyOneView == 0) {
+  if (onlyOneView==0) {
     for (i=2;i<len;i++) {
       if (i!=pos) {
-        table.rows[i].className="grayed";
+        setClassName(table.rows[i],3);
         onlyOneView = 1;
       } else {
-        table.rows[pos].cells[2].className="highlight"
-        /* table.rows[i].className="grayed"; */
-        /* console.log(table.rows[pos].cells[2]); */
+        setClassName(table.rows[pos].cells[2],4);
       }
     }
+    callClock();
     return;
   }
 
   for (i=2;i<len;i++) {
-    if (i%2) {
-      table.rows[i].className="oddline";
-    } else {
-      table.rows[i].className="evenline";
-    }
+    setClassName(table.rows[i],i%2);
     table.rows[i].cells[2].className=""
   }
   onlyOneView = 0;
+  callClock();
 }
 
 function toggleView1(t) {
   console.log(t);
 }
 
-function buildTimeStr(start, now, limit, elem) {
+function setClassName(e,n) {
+  switch(n){
+    case 0:e.className="evenline";break;
+    case 1:e.className="oddline";break;
+    case 2:e.className="expired";break;
+    case 3:e.className="grayed";break;
+    case 4:e.className="highlight";break;
+    default:break;    
+  }
+}
+
+function buildTimeStr(n,start, now, limit, elem) {
   var d = start.getDate();
   var h = start.getHours();
   var min = start.getMinutes();
@@ -319,9 +362,10 @@ function buildTimeStr(start, now, limit, elem) {
   if (delta<0) {
     delta=-delta+60;
     var sign="-";
-    elem.className="expired";
+    setClassName(elem,2);
   } else {
     var sign="";
+    setClassName(elem,n%2);
   }
   h = Math.floor(delta/3600);
   min = Math.floor((delta-h*3600)/60);
@@ -341,15 +385,8 @@ function addEntry(event, how) {
       return;
     }
     const newRow = table.insertRow(len);
-    if (len%2) {
-        newRow.className="oddline";
-    } else {
-        newRow.className="evenline";
-    }
-    newRow.onclick = function(){ return function(){toggleView(this);
-               /* id = this.rowIndex;
-               console.log("id:" + id); */
-        };}(newRow);
+    setClassName(newRow,len%2);
+    newRow.onclick = function(){ return function(){toggleView(this);};}(newRow);
     
     const newCell1 = newRow.insertCell(0);
     newRow.insertCell(1);
@@ -441,8 +478,8 @@ function callClock() {
   for (i=2;i<len;i++) {
     var ms = startTime.getTime() + sDiff*(i-2)*60000;
     //var ms = startTime.getTime()+1000;
-    var newTime = new Date(ms);
-    buildTimeStr(newTime,now,limitTime,table.rows[i]);
+    var sTime = new Date(ms);
+    buildTimeStr(i,sTime,now,limitTime,table.rows[i]);
   }
 }
 
@@ -491,6 +528,8 @@ function openTab(evt, tabName) {
   document.getElementById(tabName).style.display = "block";
   evt.currentTarget.className += " active";
   evt.currentTarget.style.backgroundColor = "yellow";
+
+  callClock();
 }        
 
     
