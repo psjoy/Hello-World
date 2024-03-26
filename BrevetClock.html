@@ -304,11 +304,11 @@ function toggleView(t) {
     for (i=2;i<len;i++) {
       if (i!=pos) {
         setClassName(table.rows[i],3);
-        onlyOneView = 1;
       } else {
         setClassName(table.rows[pos].cells[2],4);
       }
     }
+    onlyOneView=1;
     callClock();
     return;
   }
