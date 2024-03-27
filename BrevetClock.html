@@ -13,7 +13,7 @@
     .title1{background-color:wheat;}
     .title2{background-color:khaki;}
     .titleline{background-color:#ccccff;}
-    #infotable{margin:0px 0px 50px 0px;}
+    #infotable1, #infotable2{margin:0px 0px 50px 0px;}
     .oddline{background-color:wheat;}
     .evenline{text-align:center;background-color:khaki;}
     .expired1{text-align:center;background-color:#ffff00;color:#ff0000;}
@@ -223,9 +223,11 @@
 <br />
 <br />
 <br />
-<table width="100%" align="left" id="infotable">
+<table width="100%" align="left" id="infotable1">
 <colgroup><col style="background:khaki;"></colgroup>
 <tr class="title2"><td>브레베 종류</td><td id="brevetKindDisp" style="color:#0000ff;">.</td><td>제한 시간</td><td id="timeLimitDisp" style="color:#0000ff;">.</td></tr>
+</table>
+<table width="100%" align="left" id="infotable2">
 <tr class="title1"><td colspan="2">출발 시간</td><td id="start" colspan="2" style="color:#000000;">.</td></tr>
   <tr class="title2"><td colspan="2">현재 시간</td><td id="current" colspan="2" style="color:#0000ff;">.</td></tr>
 </table>
@@ -423,11 +425,13 @@ function changeStylesheetRule(stylesheet, selector, property, value) {
 
 function setClockTableFontSize(s) {
   var px = `${s}px`;
-  s= s*1.5;
+  s= s*0.6;
+  if (s<20) s=20;
   var px2= `${s}px`;
   changeStylesheetRule(document.styleSheets[0], ".title1", "font-size", px);
   changeStylesheetRule(document.styleSheets[0], ".title2", "font-size", px);
-  document.getElementById("infotable").style.marginBottom=px2;
+  document.getElementById("infotable1").style.marginBottom=px2;
+  document.getElementById("infotable2").style.marginBottom=px2;
 }
   
 function setMainTableFontSize(s) {
