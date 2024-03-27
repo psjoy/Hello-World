@@ -20,6 +20,7 @@
     .expired{text-align:center;background-color:#444444;color:#333333;}
     .highlight{font-size:50px;background-color:#ff99ff;color:#3333cc;font-weight:1000;}
     .grayed{text-align:center;background-color:#666666;color:#336666;}
+    .tdselect{padding:7px 8px 5px 8px;}
     font-size:x-large;
     </style>
 </head>
@@ -40,8 +41,8 @@
 <div id="Setting" class="tabcontent">
 <br />
 <div class="selectBox">
-<table width="414px" padding="10px">
-<tr><td align="center" colspan=3><label for="brevetKind">브레베 종류 </label>
+<table width="404px">
+<tr><td class="tdselect" align="center" colspan=3><label for="brevetKind">브레베 종류 </label>
   <select name="brevetKind" id="brevetKind" class="select">
   <option value="13.5">200km</option>
   <option value="20">300km</option>
@@ -51,7 +52,7 @@
   <option value="90">1200km</option>
   <option value="24">Flèche</option>
   </select></td></tr>
-<tr><td align="center" colspan=3><label for="startGap">출발 간격 </label>
+<tr><td class="tdselect" align="center" colspan=3><label for="startGap">출발 간격 </label>
   <select name="startGap" id="startGap" class="select">
   <option value="0">동시 출발</option>
   <option value="60">1시간 간격</option>
@@ -60,7 +61,7 @@
   <option value="15">15분 간격</option>
   <option value="10">10분 간격</option>
 </td></tr>
-<tr align=center><td><label for="year"></label>
+<tr align=center><td class="tdselect"><label for="year"></label>
   <select name="year" id="year" class="select">
   <option value="2024">2024</option>
   <option value="2025">2025</option>
@@ -68,7 +69,7 @@
   <option value="2027">2027</option>
 </select> 년</td>
 
-  <td><label for="month"></label>
+  <td class="tdselect"><label for="month"></label>
   <select name="month" id="month" class="select">
   <option value="0">1</option>
   <option value="1">2</option>
@@ -84,7 +85,7 @@
   <option value="11">12</option>
 </select> 월</td>
     
-  <td><label for="date"></label>
+  <td class="tdselect"><label for="date"></label>
   <select name="date" id="date" class="select">
   <option value="1">1</option>
   <option value="2">2</option>
@@ -119,7 +120,7 @@
   <option value="31">11</option>
 </select> 일</td></tr>
 
-<tr align=center><td></td><td>
+<tr align=center><td class="tdselect"></td><td class="tdselect">
   <label for="hour"></label>
   <select name="hour" id="hour" class="select">
   <option value="0">0</option>
@@ -148,7 +149,7 @@
   <option value="23">23</option>
 </select> 시</td>
 
-  <td><label for="minute"></label>
+  <td class="tdselect"><label for="minute"></label>
   <select name="minute" id="minute" class="select">
   <option value="0">0</option>
   <option value="1">1</option>
