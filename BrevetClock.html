@@ -13,6 +13,7 @@
     .title1{background-color:wheat;}
     .title2{background-color:khaki;}
     .titleline{background-color:#ccccff;}
+    #infotable{margin:0px 0px 50px 0px;}
     .oddline{background-color:wheat;}
     .evenline{text-align:center;background-color:khaki;}
     .expired1{text-align:center;background-color:#ffff00;color:#ff0000;}
@@ -44,11 +45,11 @@
   <select name="brevetKind" id="brevetKind" class="select">
   <option value="13.5">200km</option>
   <option value="20">300km</option>
-  <option value="27">400km</option>
+  <option value="30">400km</option>
   <option value="40">600km</option>
   <option value="75">1000km</option>
   <option value="90">1200km</option>
-  <option value="24">Fleche</option>
+  <option value="24">Flèche</option>
   </select></td></tr>
 <tr><td align="center" colspan=3><label for="startGap">출발 간격 </label>
   <select name="startGap" id="startGap" class="select">
@@ -221,12 +222,12 @@
 <br />
 <br />
 <br />
-<table width="100%" align="left">
+<table width="100%" align="left" id="infotable">
 <colgroup><col style="background:khaki;"></colgroup>
-  <tr class="title1"><td>출발 시간</td><td id="start" style="color:black;">.</td></tr>
-  <tr class="title2"><td>현재 시간</td><td id="current" style="color:blue;">.</td></tr>
+<tr class="title2"><td>브레베 종류</td><td id="brevetKindDisp" style="color:#0000ff;">.</td><td>제한 시간</td><td id="timeLimitDisp" style="color:#0000ff;">.</td></tr>
+<tr class="title1"><td colspan="2">출발 시간</td><td id="start" colspan="2" style="color:#000000;">.</td></tr>
+  <tr class="title2"><td colspan="2">현재 시간</td><td id="current" colspan="2" style="color:#0000ff;">.</td></tr>
 </table>
-<div id="space" style="height:250px;">&nbsp;</div>
 <table width="100%" align="left" id="statusTable">
   <tr class="titleline"><td>출발</td><td>마감</td><td>경과</td><td>남음</td></tr>
   <tr class="evenline"  onclick="toggleView(this)"><td>.</td><td></td><td></td><td></td></tr>
@@ -267,14 +268,16 @@
 &nbsp;&nbsp;출발 추가&nbsp;&nbsp;: 출발 설정 탭의 출발 간격에서 선택한 시간 간격으로 출발 시간을 추가합니다.<br />
 &nbsp;&nbsp;출발 삭제&nbsp;&nbsp;: 출발 현황 표의 맨 마지막 출발 시간을 삭제합니다.<br />
 &nbsp;&nbsp;<h4>시간 표시</h4>
-&nbsp;&nbsp;출발 시간&nbsp;&nbsp;: 브레베의 첫 출발 시간을 표시합니다.<br />
-&nbsp;&nbsp;출발 삭제&nbsp;&nbsp;: 현재 시간을 표시합니다.<br />
+&nbsp;&nbsp;브레베 종류&nbsp;&nbsp;: 몇 km 브레베인지를 보여줍니다.<br />
+&nbsp;&nbsp;제한 시간&nbsp;&nbsp;: 해당 브레베의 제한시간을 보여줍니다.<br />
+&nbsp;&nbsp;출발 시간&nbsp;&nbsp;: 브레베의 첫 출발 시간을 보여줍니다.<br />
+&nbsp;&nbsp;출발 삭제&nbsp;&nbsp;: 현재 시간을 보여줍니다.<br />
 &nbsp;&nbsp;<h4>현황 표시</h4>
-&nbsp;&nbsp;출발&nbsp;&nbsp;: 출발 시간대를 표시합니다.<br />
-&nbsp;&nbsp;마감&nbsp;&nbsp;: 해당 출발의 마감 시간을 표시합니다.<br />
-&nbsp;&nbsp;경과&nbsp;&nbsp;: 해당 출발의 경과 시간을 표시합니다.<br />
-&nbsp;&nbsp;남음&nbsp;&nbsp;: 해당 출발의 남은 시간을 표시합니다.<br /><br />
-&nbsp;&nbsp;원하는 출발을 누르면 해당 출발만 강조되어 표시됩니다.<br />
+&nbsp;&nbsp;출발&nbsp;&nbsp;: 출발 시간대를 보여줍니다.<br />
+&nbsp;&nbsp;마감&nbsp;&nbsp;: 해당 출발의 마감 시간을 보여줍니다.<br />
+&nbsp;&nbsp;경과&nbsp;&nbsp;: 해당 출발의 경과 시간을 보여줍니다.<br />
+&nbsp;&nbsp;남음&nbsp;&nbsp;: 해당 출발의 남은 시간을 보여줍니다.<br /><br />
+&nbsp;&nbsp;원하는 출발을 누르면 해당 출발만 강조하여 보여줍니다.<br />
 &nbsp;&nbsp;출발 현황 표의 아무 곳이나 누르면 다시 원래 표시로 돌아옵니다.<br /><br />
 &nbsp;&nbsp;마감 시간이 지난 출발은 어두운 색으로 변합니다.<br /><br /><br />
 <h3>기타</h3>
@@ -308,7 +311,7 @@ function toggleView(t) {
         setClassName(table.rows[pos].cells[2],4);
       }
     }
-    onlyOneView=1;
+    onlyOneView = 1;
     callClock();
     return;
   }
@@ -362,10 +365,10 @@ function buildTimeStr(n,start, now, limit, elem) {
   if (delta<0) {
     delta=-delta+60;
     var sign="-";
-    if(onlyOneView!=1)setClassName(elem,2);
+    setClassName(elem,2);
   } else {
     var sign="";
-    if(onlyOneView!=1)setClassName(elem,n%2);
+    setClassName(elem,n%2);
   }
   h = Math.floor(delta/3600);
   min = Math.floor((delta-h*3600)/60);
@@ -419,11 +422,11 @@ function changeStylesheetRule(stylesheet, selector, property, value) {
 
 function setClockTableFontSize(s) {
   var px = `${s}px`;
-  s= s*4.5+20;
+  s= s*1.5;
   var px2= `${s}px`;
   changeStylesheetRule(document.styleSheets[0], ".title1", "font-size", px);
   changeStylesheetRule(document.styleSheets[0], ".title2", "font-size", px);
-  document.getElementById("space").style.height=px2;
+  document.getElementById("infotable").style.marginBottom=px2;
 }
   
 function setMainTableFontSize(s) {
@@ -528,6 +531,11 @@ function openTab(evt, tabName) {
   document.getElementById(tabName).style.display = "block";
   evt.currentTarget.className += " active";
   evt.currentTarget.style.backgroundColor = "yellow";
+
+  var target = document.getElementById("brevetKind");
+  target.options[target.selectedIndex].text;
+  document.getElementById("brevetKindDisp").innerText = target.options[target.selectedIndex].text;
+  document.getElementById("timeLimitDisp").innerText = document.getElementById('brevetKind').value+" 시간";
 
   callClock();
 }        
