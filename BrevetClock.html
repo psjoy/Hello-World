@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Brevet Clock</title>
     <style>table{border-collapse:collapse;font-size:x-large;border-style:ridge;}
-    td{border-color:lightgray;border-width:5px;border-style:ridge;align:center;}
+    td{border-color:lightgray;border-width:5px;border-style:ridge;text-align:center;}
     .select{font-size:x-large;background:peachpuff;border:2px solid sandybrown;border-radius:6px;padding:2px;}
     .addDel{font-size:x-large;background:peachpuff;border:2px solid sandybrown;border-radius:6px;padding:2px;}
     .tablinks{margin:3px;font-size:x-large;border:3px solid gray;border-radius:10px;padding:6px;}
@@ -357,11 +357,16 @@ function buildTimeStr(n,start, now, limit, elem) {
   elem.cells[1].innerText=`${h}:${min<10?`0${min}`:min}`;
   
   var delta = diffGetTime(start, now);
-  h = Math.floor(delta/3600);
-  min = Math.floor((delta-h*3600)/60);
-  //s = d%60;
-  disp=`${h}:${min<10?`0${min}`:min}`;
-  elem.cells[2].innerText = disp;
+  if (delta<0) {
+    var past=-delta+59;
+    var sign1="-";
+  } else {
+    var past=delta;
+    var sign1="";
+  }
+  h=Math.floor(past/3600);
+  min=Math.floor((past-h*3600)/60);
+  elem.cells[2].innerText=sign1+`${h}:${min<10?`0${min}`:min}`;
   
   limit=limit*3600+60;
   delta = limit-delta;
@@ -375,8 +380,11 @@ function buildTimeStr(n,start, now, limit, elem) {
   }
   h = Math.floor(delta/3600);
   min = Math.floor((delta-h*3600)/60);
-  elem.cells[3].innerText=sign+`${h}:${min<10?`0${min}`:min}`;
-  var m = start.getMonth();
+  if (sign1=="-") {
+    elem.cells[3].innerText="--";
+  } else {
+    elem.cells[3].innerText=sign+`${h}:${min<10?`0${min}`:min}`;
+  }
 }
 
 function addEntry(event, how) {
@@ -517,7 +525,6 @@ function initStartTime() {
   document.getElementById("fontSize1").value = 44;
   document.getElementById("fontSize2").value = 44;
 }
-
     
 function openTab(evt, tabName) {
   var i, tabcontent, tablinks;
@@ -553,7 +560,6 @@ initStartTime();
 callClock();
 
 document.getElementById("statusTable").insertRow(0);
-
 
 setInterval(callClock, 1000); // 1초마다 실행
 </script>
