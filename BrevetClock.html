@@ -607,16 +607,13 @@ settingInputs.forEach(input => {
     
 let startTime = new Date();
 
-document.getElementById("defaultOpen").click();
 initStartTime();
 callClock();
 
 document.getElementById("statusTable").insertRow(0);
-
-/* document.addEventListener('DOMContentLoaded', function() {
-  openTab(event, 'displayTimer');
-}); */
 setInterval(callClock, 1000); // 1초마다 실행
+
+document.getElementById("defaultOpen").click();
 </script>
 </body>
 </html>
