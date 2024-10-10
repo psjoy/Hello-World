@@ -563,10 +563,10 @@ function saveSettings() {
         hour: document.getElementById('hour').value,
         minute: document.getElementById('minute').value,
 
-        /* fontSize1: document.getElementById('fontSize1').value,
-        fontSize2: document.getElementById('fontSize2').value */
-        fontSize1: 20,
-        fontSize2: 20
+        fontSize1: document.getElementById('fontSize1').value,  // ToDo: does not work, why???
+        fontSize2: document.getElementById('fontSize2').value
+        /* fontSize1: 20,
+        fontSize2: 20 */
     };
     
     document.cookie = `brevetSettings=${JSON.stringify(settings)}; expires=${new Date(Date.now() + (86400e3*7)).toUTCString()}; path=/`;
