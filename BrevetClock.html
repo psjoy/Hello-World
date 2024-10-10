@@ -67,6 +67,14 @@
   <option value="2025">2025</option>
   <option value="2026">2026</option>
   <option value="2027">2027</option>
+  <option value="2028">2028</option>
+  <option value="2029">2029</option>
+  <option value="2030">2030</option>
+  <option value="2031">2031</option>
+  <option value="2032">2032</option>
+  <option value="2033">2033</option>
+  <option value="2034">2034</option>
+  <option value="2035">2035</option>
 </select> 년</td>
 
   <td class="tdselect"><label for="month"></label>
@@ -579,14 +587,13 @@ function loadSettings() {
         fontSize1 = settings.fontSize1;
         fontSize2 = settings.fontSize2;
         console.log("Loading font sizes:", fontSize1, fontSize2);
-        
     }
 }
 
 loadSettings();
 
 // 페이지 로드 시 설정 불러오기
-window.addEventListener('load', loadSettings);
+/* window.addEventListener('load', loadSettings); */
 
 // 설정 변경 시 저장하기
 const settingInputs = document.querySelectorAll('#Setting select, #etcEtc select');
@@ -594,10 +601,10 @@ settingInputs.forEach(input => {
     input.addEventListener('change', saveSettings);
 });
     
-let startTime = new Date();
+/* let startTime = new Date(); */
 
-setClockTableFontSize(document.getElementById('fontSize1').value);
-setMainTableFontSize(document.getElementById('fontSize2').value);
+/* setClockTableFontSize(document.getElementById('fontSize1').value);
+setMainTableFontSize(document.getElementById('fontSize2').value); */
 fontSize1 = document.getElementById('fontSize1').value;
 fontSize2 = document.getElementById('fontSize2').value;
 
