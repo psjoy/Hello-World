@@ -613,6 +613,29 @@ callClock();
 
 document.getElementById("statusTable").insertRow(0);
 
+document.addEventListener('DOMContentLoaded', function() {
+  // 모든 탭 콘텐츠를 숨김
+  var tabContents = document.getElementsByClassName('tabcontent');
+  for (var i = 0; i < tabContents.length; i++) {
+    tabContents[i].style.display = 'none';
+  }
+
+  // 두 번째 탭 (displayTimer)을 표시
+  var secondTab = document.getElementById('displayTimer');
+  if (secondTab) {
+    secondTab.style.display = 'block';
+  }
+
+  // 탭 버튼 상태 업데이트 (만약 탭 버튼이 있다면)
+  var tabButtons = document.getElementsByClassName('tablinks');
+  for (var i = 0; i < tabButtons.length; i++) {
+    tabButtons[i].className = tabButtons[i].className.replace(" active", "");
+  }
+  if (tabButtons.length > 1) {
+    tabButtons[1].className += " active";
+  }
+});
+
 setInterval(callClock, 1000); // 1초마다 실행
 </script>
 </body>
