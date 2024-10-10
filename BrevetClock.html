@@ -607,6 +607,11 @@ settingInputs.forEach(input => {
     
 let startTime = new Date();
 
+setClockTableFontSize(document.getElementById('fontSize1').value);
+setMainTableFontSize(document.getElementById('fontSize2').value);
+console.log(document.getElementById('fontSize1').value);
+console.log(document.getElementById('fontSize2').value);
+
 initStartTime();
 callClock();
 
@@ -614,11 +619,6 @@ document.getElementById("statusTable").insertRow(0);
 setInterval(callClock, 1000); // 1초마다 실행
 
 document.getElementById("defaultOpen").click();
-
-setClockTableFontSize(document.getElementById('fontSize1').value);
-setMainTableFontSize(document.getElementById('fontSize2').value);
-console.log(document.getElementById('fontSize1').value);
-console.log(document.getElementById('fontSize2').value);
 </script>
 </body>
 </html>
