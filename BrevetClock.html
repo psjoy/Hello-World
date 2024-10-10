@@ -600,7 +600,7 @@ function loadSettings() {
 window.addEventListener('load', loadSettings);
 
 // 설정 변경 시 저장하기
-const settingInputs = document.querySelectorAll('#Setting select');
+const settingInputs = document.querySelectorAll('#Setting select, #etcEtc select');
 settingInputs.forEach(input => {
     input.addEventListener('change', saveSettings);
 });
