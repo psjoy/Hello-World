@@ -14,4 +14,8 @@ Font size can be adjusted in etc tab.
 
 =======================================
 
+<<<<<<< HEAD
 ToDo: Store data in cookies to maintain the current setting state even when the browser restarts.
+=======
+ToDo: Store data in cookies to maintain the current setting state even when the browser restarts.
+>>>>>>> 730080d45916ee18247cbf14b6579daa00840af8
