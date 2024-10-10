@@ -555,8 +555,8 @@ function openTab(evt, tabName) {
 // 설정을 쿠키에 저장하는 함수
 function saveSettings() {
     const settings = {
-        brevetType: document.getElementById('brevetType').value,
-        startInterval: document.getElementById('startInterval').value,
+        brevetType: document.getElementById('brevetKind').value,
+        startInterval: document.getElementById('startGap').value,
         year: document.getElementById('year').value,
         month: document.getElementById('month').value,
         day: document.getElementById('day').value,
@@ -575,8 +575,8 @@ function loadSettings() {
     if (brevetSettingsCookie) {
         const settings = JSON.parse(brevetSettingsCookie.split('=')[1]);
         
-        document.getElementById('brevetType').value = settings.brevetType;
-        document.getElementById('startInterval').value = settings.startInterval;
+        document.getElementById('brevetKind').value = settings.brevetType;
+        document.getElementById('startGap').value = settings.startInterval;
         document.getElementById('year').value = settings.year;
         document.getElementById('month').value = settings.month;
         document.getElementById('day').value = settings.day;
