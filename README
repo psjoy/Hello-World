@@ -1,4 +1,17 @@
-2011. 10. 18. Tue
+2023. 10. 10. Thu
 
-This is just test.
+Brevet Clock
 by psjoy
+
+Count ellapsed time since brevet starts.
+Dim timer display if time is expired.
+
+Can select start data/time, brevet kind(distance), start time interval
+Starting slot can be added/deleted in status tab
+
+Font size can be adjusted in etc tab.
+
+
+=======================================
+
+ToDo: Store data in cookies to maintain the current setting state even when the browser restarts.
