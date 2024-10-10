@@ -308,6 +308,7 @@
 let onlyOneView = 0;
 let fontSize1 = 32;
 let fontSize2 = 32;
+let isCookieLoaded = false;
 
 function toggleView(t) {
   const table = document.getElementById('statusTable');
@@ -587,6 +588,8 @@ function loadSettings() {
         fontSize1 = settings.fontSize1;
         fontSize2 = settings.fontSize2;
         console.log("Loading font sizes:", fontSize1, fontSize2);
+
+        isCookieLoaded = true;
     }
 }
 
@@ -605,8 +608,8 @@ settingInputs.forEach(input => {
 
 /* setClockTableFontSize(document.getElementById('fontSize1').value);
 setMainTableFontSize(document.getElementById('fontSize2').value); */
-fontSize1 = document.getElementById('fontSize1').value;
-fontSize2 = document.getElementById('fontSize2').value;
+/* fontSize1 = document.getElementById('fontSize1').value;
+fontSize2 = document.getElementById('fontSize2').value; */
 
 initStartTime();
 callClock();
