@@ -30,8 +30,8 @@
     
 <!-- Tab links -->
 <div class="tab">
-  <button class="tablinks" onclick="openTab(event, 'Setting')" id="defaultOpen"> 출발 설정 </button>
-  <button class="tablinks active" onclick="openTab(event, 'displayTimer')"> 경과시간 표시 </button>
+  <button class="tablinks" onclick="openTab(event, 'Setting')"> 출발 설정 </button>
+  <button id="defaultOpen" class="tablinks active" onclick="openTab(event, 'displayTimer')"> 경과시간 표시 </button>
   <button class="tablinks" onclick="openTab(event, 'etcEtc')"> 기타 </button>
   <button class="tablinks" onclick="openTab(event, 'help')"> 도움말 </button>
 </div>
@@ -615,28 +615,6 @@ document.getElementById("statusTable").insertRow(0);
 
 document.addEventListener('DOMContentLoaded', function() {
   openTab(event, 'displayTimer');
-
-  /* // 모든 탭 콘텐츠를 숨김
-  var tabContents = document.querySelectorAll('.tabcontent');
-  tabContents.forEach(function(tab) {
-    tab.style.display = 'none';
-  });
-
-  // 두 번째 탭 (displayTimer)을 표시
-  var secondTab = document.getElementById('displayTimer');
-  if (secondTab) {
-    secondTab.style.display = 'block';
-  }
-
-  // 탭 버튼 상태 업데이트
-  var tabButtons = document.querySelectorAll('.tab > *');  // .tab 아래의 모든 직계 자식
-  tabButtons.forEach(function(button, index) {
-    if (index === 1) {  // 두 번째 탭 (index 1)
-      button.classList.add('active');
-    } else {
-      button.classList.remove('active');
-    }
-  }); */
 });
 setInterval(callClock, 1000); // 1초마다 실행
 </script>
