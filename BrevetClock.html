@@ -462,11 +462,13 @@ function callClock() {
     setClockTableFontSize(fSize1);
     fontSize1=fSize1;
   }
+  setClockTableFontSize(fSize1);
   const fSize2 = document.getElementById('fontSize2').value;
   if (fSize2!=fontSize2) {
     setMainTableFontSize(fSize2);
     fontSize2=fSize2;
   }
+  setMainTableFontSize(fSize2);
 
   var now = new Date();
   var yy = document.getElementById("year").value;
