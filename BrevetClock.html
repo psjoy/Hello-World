@@ -550,8 +550,49 @@ function openTab(evt, tabName) {
   document.getElementById("timeLimitDisp").innerText = document.getElementById('brevetKind').value+"시간";
 
   callClock();
-}        
+}      
 
+// 설정을 쿠키에 저장하는 함수
+function saveSettings() {
+    const settings = {
+        brevetType: document.getElementById('brevetType').value,
+        startInterval: document.getElementById('startInterval').value,
+        year: document.getElementById('year').value,
+        month: document.getElementById('month').value,
+        day: document.getElementById('day').value,
+        hour: document.getElementById('hour').value,
+        minute: document.getElementById('minute').value
+    };
+    
+    document.cookie = `brevetSettings=${JSON.stringify(settings)}; expires=${new Date(Date.now() + (86400e3*7)).toUTCString()}; path=/`;
+}
+
+// 쿠키에서 설정을 불러오는 함수
+function loadSettings() {
+    const cookies = document.cookie.split(';');
+    const brevetSettingsCookie = cookies.find(cookie => cookie.trim().startsWith('brevetSettings='));
+    
+    if (brevetSettingsCookie) {
+        const settings = JSON.parse(brevetSettingsCookie.split('=')[1]);
+        
+        document.getElementById('brevetType').value = settings.brevetType;
+        document.getElementById('startInterval').value = settings.startInterval;
+        document.getElementById('year').value = settings.year;
+        document.getElementById('month').value = settings.month;
+        document.getElementById('day').value = settings.day;
+        document.getElementById('hour').value = settings.hour;
+        document.getElementById('minute').value = settings.minute;
+    }
+}
+
+// 페이지 로드 시 설정 불러오기
+window.addEventListener('load', loadSettings);
+
+// 설정 변경 시 저장하기
+const settingInputs = document.querySelectorAll('#Setting select');
+settingInputs.forEach(input => {
+    input.addEventListener('change', saveSettings);
+});
     
 let startTime = new Date();
 
