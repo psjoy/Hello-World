@@ -561,9 +561,9 @@ function saveSettings() {
         month: document.getElementById('month').value,
         day: document.getElementById('date').value,
         hour: document.getElementById('hour').value,
-        minute: document.getElementById('minute').value
+        minute: document.getElementById('minute').value,
 
-        fontSize1: document.getElementById('fontSize1').value
+        fontSize1: document.getElementById('fontSize1').value,
         fontSize2: document.getElementById('fontSize2').value
     };
     
@@ -586,8 +586,8 @@ function loadSettings() {
         document.getElementById('hour').value = settings.hour;
         document.getElementById('minute').value = settings.minute;
 
-        document.getElementById('fontSize1').value = settings.fontSize1;
-        document.getElementById('fontSize2').value = settings.fontSize2;
+        document.getElementById('fontSize1').value = settings.fontSize_1;
+        document.getElementById('fontSize2').value = settings.fontSize_2;
 
     }
 }
