@@ -522,8 +522,8 @@ function initStartTime() {
   
   document.getElementById("startGap").value = 30;
 
-  document.getElementById("fontSize1").value = 44;
-  document.getElementById("fontSize2").value = 44;
+  document.getElementById("fontSize1").value = fontSize1;
+  document.getElementById("fontSize2").value = fontSize2;
 }
     
 function openTab(evt, tabName) {
@@ -592,6 +592,8 @@ function loadSettings() {
 
         document.getElementById('fontSize1').value = settings.fontSize1;
         document.getElementById('fontSize2').value = settings.fontSize2;
+        fontSize1 = settings.fontSize1;
+        fontSize2 = settings.fontSize2;
         
     }
 }
