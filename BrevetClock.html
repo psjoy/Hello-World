@@ -569,7 +569,7 @@ function saveSettings() {
         fontSize2: 20 */
     };
     console.log("saveSettings called");
-    console.log("Saving font sizes:", fontSize1, fontSize2);
+    console.log("Saving font sizes:", fontSize1, fontSize2);F
     
     document.cookie = `brevetSettings=${JSON.stringify(settings)}; expires=${new Date(Date.now() + (86400e3*7)).toUTCString()}; path=/`;
 }
@@ -616,6 +616,11 @@ document.getElementById("statusTable").insertRow(0);
 setInterval(callClock, 1000); // 1초마다 실행
 
 document.getElementById("defaultOpen").click();
+
+setClockTableFontSize(document.getElementById('fontSize1').value);
+setMainTableFontSize(document.getElementById('fontSize2').value);
+console.log(document.getElementById('fontSize1').value);
+console.log(document.getElementById('fontSize2').value);
 </script>
 </body>
 </html>
