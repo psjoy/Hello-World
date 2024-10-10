@@ -457,18 +457,8 @@ function setMainTableFontSize(s) {
 }
   
 function callClock() {
-  const fSize1 = document.getElementById('fontSize1').value;
-  if (fSize1!=fontSize1) {
-    setClockTableFontSize(fSize1);
-    fontSize1=fSize1;
-  }
-  setClockTableFontSize(fSize1);
-  const fSize2 = document.getElementById('fontSize2').value;
-  if (fSize2!=fontSize2) {
-    setMainTableFontSize(fSize2);
-    fontSize2=fSize2;
-  }
-  setMainTableFontSize(fSize2);
+  setClockTableFontSize(document.getElementById('fontSize1').value);
+  setMainTableFontSize(document.getElementById('fontSize2').value);
 
   var now = new Date();
   var yy = document.getElementById("year").value;
@@ -514,7 +504,6 @@ function initStartTime() {
   var date = now.getDate();
   var hour = 6;
   var minute = 0;
-  startTime = new Date(year,month,date,hour,minute);
   
   document.getElementById("year").value = year;
   document.getElementById("month").value = month;
@@ -611,8 +600,8 @@ let startTime = new Date();
 
 setClockTableFontSize(document.getElementById('fontSize1').value);
 setMainTableFontSize(document.getElementById('fontSize2').value);
-console.log(document.getElementById('fontSize1').value);
-console.log(document.getElementById('fontSize2').value);
+fontSize1 = document.getElementById('fontSize1').value;
+fontSize2 = document.getElementById('fontSize2').value;
 
 initStartTime();
 callClock();
