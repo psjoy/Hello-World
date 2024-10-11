@@ -496,7 +496,6 @@ function callClock() {
   }
 }
 
-
 function diffGetTime(date1, date2) {
   var diff = (date2.getTime() - date1.getTime())/1000;
   return Math.floor(diff);
@@ -593,31 +592,36 @@ function loadSettings() {
     }
 }
 
-loadSettings();
 
-// 페이지 로드 시 설정 불러오기
-/* window.addEventListener('load', loadSettings); */
+main() {
+  loadSettings();
 
-// 설정 변경 시 저장하기
-const settingInputs = document.querySelectorAll('#Setting select, #etcEtc select');
-settingInputs.forEach(input => {
-    input.addEventListener('change', saveSettings);
-});
-    
-/* let startTime = new Date(); */
+  // 페이지 로드 시 설정 불러오기
+  /* window.addEventListener('load', loadSettings); */
 
-/* setClockTableFontSize(document.getElementById('fontSize1').value);
-setMainTableFontSize(document.getElementById('fontSize2').value); */
-/* fontSize1 = document.getElementById('fontSize1').value;
-fontSize2 = document.getElementById('fontSize2').value; */
+  // 설정 변경 시 저장하기
+  const settingInputs = document.querySelectorAll('#Setting select, #etcEtc select');
+  settingInputs.forEach(input => {
+      input.addEventListener('change', saveSettings);
+  });
+      
+  /* let startTime = new Date(); */
 
-initStartTime();
-callClock();
+  /* setClockTableFontSize(document.getElementById('fontSize1').value);
+  setMainTableFontSize(document.getElementById('fontSize2').value); */
+  /* fontSize1 = document.getElementById('fontSize1').value;
+  fontSize2 = document.getElementById('fontSize2').value; */
 
-document.getElementById("statusTable").insertRow(0);
-setInterval(callClock, 1000); // 1초마다 실행
+  initStartTime();
+  callClock();
 
-document.getElementById("defaultOpen").click();
+  document.getElementById("statusTable").insertRow(0);
+  setInterval(callClock, 1000); // 1초마다 실행
+
+  document.getElementById("defaultOpen").click();
+}
+
+main();
 </script>
 </body>
 </html>
