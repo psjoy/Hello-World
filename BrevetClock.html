@@ -594,10 +594,8 @@ function loadSettings() {
 
 
 function main() {
-  loadSettings();
-
-  // 페이지 로드 시 설정 불러오기
   /* window.addEventListener('load', loadSettings); */
+  loadSettings();
 
   // 설정 변경 시 저장하기
   const settingInputs = document.querySelectorAll('#Setting select, #etcEtc select');
@@ -607,12 +605,9 @@ function main() {
       
   /* let startTime = new Date(); */
 
-  /* setClockTableFontSize(document.getElementById('fontSize1').value);
-  setMainTableFontSize(document.getElementById('fontSize2').value); */
-  /* fontSize1 = document.getElementById('fontSize1').value;
-  fontSize2 = document.getElementById('fontSize2').value; */
-
-  initStartTime();
+  if (isCookieLoaded === false) {
+    initStartTime();
+  }
   callClock();
 
   document.getElementById("statusTable").insertRow(0);
