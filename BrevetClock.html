@@ -50,6 +50,9 @@
   <option value="40">600km</option>
   <option value="75">1000km</option>
   <option value="90">1200km</option>
+  <option value="108.3">1300km</option>
+  <option value="125">1500km</option>
+  <option value="203">2030km</option>
   <option value="24">Flèche</option>
   </select></td></tr>
 <tr><td class="tdselect" align="center" colspan=3><label for="startGap">출발 간격 </label>
@@ -571,7 +574,8 @@ function saveSettings() {
     };
     console.log("Saving font sizes:", fontSize1, fontSize2);
     
-    document.cookie = `brevetSettings=${JSON.stringify(settings)}; expires=${new Date(Date.now() + (86400e3*7)).toUTCString()}; path=/`;
+    liveTick = (86400e3*(document.getElementById('brevetKind').value*1.5/24));
+    document.cookie = `brevetSettings=${JSON.stringify(settings)}; expires=${new Date(Date.now() + liveTick).toUTCString()}; path=/`;
 }
 
 // 쿠키에서 설정을 불러오는 함수
