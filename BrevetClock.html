@@ -226,8 +226,8 @@
 
 <div id="displayTimer" class="tabcontent active">
 <br />
-  &nbsp;&nbsp;<button class="addDel" onclick="addEntry(event, 1)" >&nbsp;출발 추가&nbsp;</button>&nbsp;&nbsp;
-  <button class="addDel" onclick="addEntry(event, -1)" >&nbsp;출발 삭제&nbsp;</button>
+  &nbsp;&nbsp;<button id="addEntryButton" class="addDel" onclick="addEntry(event, 1)" >&nbsp;출발 추가&nbsp;</button>&nbsp;&nbsp;
+  <button id="delEntryButton" class="addDel" onclick="addEntry(event, -1)" >&nbsp;출발 삭제&nbsp;</button>
 <br />
 <br />
 <br />
@@ -412,13 +412,15 @@ function addEntry(event, how) {
     newRow.insertCell(2);
     newRow.insertCell(3);
     newCell1.innerText = '.';
-    
-    callClock();
   }
-
+  
   if (how==-1 && len > minLen) {
     table.deleteRow(len-1);
   }
+  
+  console.log("entry length = ", table.rows.length);
+  saveSettings();
+  callClock();
 }
 
 function changeStylesheetRule(stylesheet, selector, property, value) {
@@ -592,8 +594,7 @@ function loadSettings() {
     }
 }
 
-
-function main() {
+function cookieHaldling() {
   /* window.addEventListener('load', loadSettings); */
   loadSettings();
 
@@ -602,10 +603,16 @@ function main() {
   settingInputs.forEach(input => {
       input.addEventListener('change', saveSettings);
   });
-      
-  /* let startTime = new Date(); */
+}
 
+/* ToDo: Save number of start intervals.
+         Focus Setting tab if cookie does not exist/expired.
+ */
+function main() {
+  cookieHaldling();
+      
   if (isCookieLoaded === false) {
+    // ToDo: initial tab is Setting tab
     initStartTime();
   }
   callClock();
