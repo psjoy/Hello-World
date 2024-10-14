@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Brevet Clock</title>
+    <style>table{border-collapse:collapse;font-size:x-large;border-style:ridge;}
+    td{border-color:lightgray;border-width:5px;border-style:ridge;text-align:center;}
+    .select{font-size:x-large;background:peachpuff;border:2px solid sandybrown;border-radius:6px;padding:2px;}
+    .addDel{font-size:x-large;background:peachpuff;border:2px solid sandybrown;border-radius:6px;padding:2px;}
+    .tablinks{margin:3px;font-size:x-large;border:3px solid gray;border-radius:10px;padding:6px;}
+    .title1, .title2, .titleline, .oddline, .evenline, .expired, .highlight, .grayed {font-size:50px;text-align:center;}
+    .title1{background-color:wheat;}
+    .title2{background-color:khaki;}
+    .titleline{background-color:#ccccff;}
+    #infotable1, #infotable2{margin:0px 0px 50px 0px;}
+    .oddline{background-color:wheat;}
+    .evenline{text-align:center;background-color:khaki;}
+    .expired1{text-align:center;background-color:#ffff00;color:#ff0000;}
+    .expired{text-align:center;background-color:#444444;color:#333333;}
+    .highlight{font-size:50px;background-color:#ff99ff;color:#3333cc;font-weight:1000;}
+    .grayed{text-align:center;background-color:#666666;color:#336666;}
+    .tdselect{padding:7px 0px 5px 0px;}
+    font-size:x-large;
+    </style>
+</head>
+<body>
+
+    
+    
+<!-- Tab links -->
+<div class="tab">
+  <button class="tablinks" onclick="openTab(event, 'Setting')"> 출발 설정 </button>
+  <button id="defaultOpen" class="tablinks active" onclick="openTab(event, 'displayTimer')"> 경과시간 표시 </button>
+  <button class="tablinks" onclick="openTab(event, 'etcEtc')"> 기타 </button>
+  <button class="tablinks" onclick="openTab(event, 'help')"> 도움말 </button>
+</div>
+
+<br />
+<!-- Tab content -->
+<div id="Setting" class="tabcontent">
+<br />
+<div class="selectBox">
+<table width="404px">
+<tr><td class="tdselect" align="center" colspan=3><label for="brevetKind">브레베 종류 </label>
+  <select name="brevetKind" id="brevetKind" class="select">
+  <option value="13.5">200km</option>
+  <option value="20">300km</option>
+  <option value="27">400km</option>
+  <option value="40">600km</option>
+  <option value="75">1000km</option>
+  <option value="90">1200km</option>
+  <option value="108.3">1300km</option>
+  <option value="125">1500km</option>
+  <option value="203">2030km</option>
+  <option value="24">Flèche</option>
+  </select></td></tr>
+<tr><td class="tdselect" align="center" colspan=3><label for="startGap">출발 간격 </label>
+  <select name="startGap" id="startGap" class="select">
+  <option value="0">동시 출발</option>
+  <option value="60">1시간 간격</option>
+  <option value="30">30분 간격</option>
+  <option value="20">20분 간격</option>
+  <option value="15">15분 간격</option>
+  <option value="10">10분 간격</option>
+</td></tr>
+<tr align=center><td class="tdselect"><label for="year"></label>
+  <select name="year" id="year" class="select">
+  <option value="2024">2024</option>
+  <option value="2025">2025</option>
+  <option value="2026">2026</option>
+  <option value="2027">2027</option>
+  <option value="2028">2028</option>
+  <option value="2029">2029</option>
+  <option value="2030">2030</option>
+  <option value="2031">2031</option>
+  <option value="2032">2032</option>
+  <option value="2033">2033</option>
+  <option value="2034">2034</option>
+  <option value="2035">2035</option>
+</select> 년</td>
+
+  <td class="tdselect"><label for="month"></label>
+  <select name="month" id="month" class="select">
+  <option value="0">1</option>
+  <option value="1">2</option>
+  <option value="2">3</option>
+  <option value="3">4</option>
+  <option value="4">5</option>
+  <option value="5">6</option>
+  <option value="6">7</option>
+  <option value="7">8</option>
+  <option value="8">9</option>
+  <option value="9">10</option>
+  <option value="10">11</option>
+  <option value="11">12</option>
+</select> 월</td>
+    
+  <td class="tdselect"><label for="date"></label>
+  <select name="date" id="date" class="select">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+  <option value="9">9</option>
+  <option value="10">10</option>
+  <option value="11">11</option>
+  <option value="12">12</option>
+  <option value="13">13</option>
+  <option value="14">14</option>
+  <option value="15">15</option>
+  <option value="16">16</option>
+  <option value="17">17</option>
+  <option value="18">18</option>
+  <option value="19">19</option>
+  <option value="20">20</option>
+  <option value="21">21</option>
+  <option value="22">22</option>
+  <option value="23">23</option>
+  <option value="24">24</option>
+  <option value="25">25</option>
+  <option value="26">26</option>
+  <option value="27">27</option>
+  <option value="28">28</option>
+  <option value="29">29</option>
+  <option value="30">30</option>
+  <option value="31">11</option>
+</select> 일</td></tr>
+
+<tr align=center><td class="tdselect"></td><td class="tdselect">
+  <label for="hour"></label>
+  <select name="hour" id="hour" class="select">
+  <option value="0">0</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+  <option value="9">9</option>
+  <option value="10">10</option>
+  <option value="11">11</option>
+  <option value="12">12</option>
+  <option value="13">13</option>
+  <option value="14">14</option>
+  <option value="15">15</option>
+  <option value="16">16</option>
+  <option value="17">17</option>
+  <option value="18">18</option>
+  <option value="19">19</option>
+  <option value="20">20</option>
+  <option value="21">21</option>
+  <option value="22">22</option>
+  <option value="23">23</option>
+</select> 시</td>
+
+  <td class="tdselect"><label for="minute"></label>
+  <select name="minute" id="minute" class="select">
+  <option value="0">0</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+  <option value="9">9</option>
+  <option value="10">10</option>
+  <option value="11">11</option>
+  <option value="12">12</option>
+  <option value="13">13</option>
+  <option value="14">14</option>
+  <option value="15">15</option>
+  <option value="16">16</option>
+  <option value="17">17</option>
+  <option value="18">18</option>
+  <option value="19">19</option>
+  <option value="20">20</option>
+  <option value="21">21</option>
+  <option value="22">22</option>
+  <option value="23">23</option>
+  <option value="24">24</option>
+  <option value="25">25</option>
+  <option value="26">26</option>
+  <option value="27">27</option>
+  <option value="28">28</option>
+  <option value="29">29</option>
+  <option value="30">30</option>
+  <option value="31">31</option>
+  <option value="32">32</option>
+  <option value="33">33</option>
+  <option value="34">34</option>
+  <option value="35">35</option>
+  <option value="36">36</option>
+  <option value="37">37</option>
+  <option value="38">38</option>
+  <option value="39">39</option>
+  <option value="40">40</option>
+  <option value="41">41</option>
+  <option value="42">42</option>
+  <option value="43">43</option>
+  <option value="44">44</option>
+  <option value="45">45</option>
+  <option value="46">46</option>
+  <option value="47">47</option>
+  <option value="48">48</option>
+  <option value="49">49</option>
+  <option value="50">50</option>
+  <option value="51">51</option>
+  <option value="52">52</option>
+  <option value="53">53</option>
+  <option value="54">54</option>
+  <option value="55">55</option>
+  <option value="56">56</option>
+  <option value="57">57</option>
+  <option value="58">58</option>
+  <option value="59">59</option>
+</select> 분</td></tr>
+</table>
+</div>
+</div>
+
+<div id="displayTimer" class="tabcontent active">
+<br />
+  &nbsp;&nbsp;<button id="addEntryButton" class="addDel" onclick="addEntry(event, 1)" >&nbsp;출발 추가&nbsp;</button>&nbsp;&nbsp;
+  <button id="delEntryButton" class="addDel" onclick="addEntry(event, -1)" >&nbsp;출발 삭제&nbsp;</button>
+<br />
+<br />
+<br />
+<table width="100%" align="left" id="infotable1">
+<colgroup><col style="background:khaki;"></colgroup>
+<tr class="title2"><td>브레베 종류</td><td id="brevetKindDisp" style="color:#0000ff;">.</td><td>제한 시간</td><td id="timeLimitDisp" style="color:#0000ff;">.</td></tr>
+</table>
+<table width="100%" align="left" id="infotable2">
+<tr class="title1"><td colspan="2">출발 시간</td><td id="start" colspan="2" style="color:#000000;">.</td></tr>
+  <tr class="title2"><td colspan="2">현재 시간</td><td id="current" colspan="2" style="color:#0000ff;">.</td></tr>
+</table>
+<table width="100%" align="left" id="statusTable">
+  <tr class="titleline"><td>출발</td><td>마감</td><td>경과</td><td>남음</td></tr>
+  <tr class="evenline"  onclick="toggleView(this)"><td>.</td><td></td><td></td><td></td></tr>
+</table>
+</div>
+
+<div id="etcEtc" class="tabcontent">
+  <h3>기타</h3>
+  <p><label for="fontSize1">시간 글꼴 크기 </label>
+  <select name="fontSize1" id="fontSize1" class="select">
+  <option value="20">보통</option>
+  <option value="32">크게</option>
+  <option value="44">더 크게</option>
+  <option value="50">아주 크게</option>
+  <option value="72">매우 아주 크게</option>
+  </select></p>
+
+  <p><label for="fontSize2">현황 글꼴 크기 </label>
+  <select name="fontSize2" id="fontSize2" class="select">
+  <option value="20">보통</option>
+  <option value="32">크게</option>
+  <option value="44">더 크게</option>
+  <option value="50">아주 크게</option>
+  <option value="72">매우 아주 크게</option>
+  </select></p>
+</div>
+
+<div id="help" class="tabcontent">
+<h3>출발 설정</h3>
+&nbsp;&nbsp;브레베 종류: 브레베의 거리를 선택합니다.<br />
+&nbsp;&nbsp;출발간격: 몇분 간격으로 출발할 것인지 선택합니다.<br />
+&nbsp;&nbsp;년: 브레베 개최 연도를 선택합니다.<br />
+&nbsp;&nbsp;월: 브레베 개최 월을 선택합니다.<br />
+&nbsp;&nbsp;일: 브레베 시작일을 선택합니다.<br />
+&nbsp;&nbsp;시,분: 첫 출발시간의 시, 분을 선택합니다.<br /><br /><br />
+<h3>경과시간 표시</h3>
+<h4>추가, 삭제 단추</h4>
+&nbsp;&nbsp;출발 추가&nbsp;&nbsp;: 출발 설정 탭의 출발 간격에서 선택한 시간 간격으로 출발 시간을 추가합니다.<br />
+&nbsp;&nbsp;출발 삭제&nbsp;&nbsp;: 출발 현황 표의 맨 마지막 출발 시간을 삭제합니다.<br />
+&nbsp;&nbsp;<h4>시간 표시</h4>
+&nbsp;&nbsp;브레베 종류&nbsp;&nbsp;: 몇 km 브레베인지를 보여줍니다.<br />
+&nbsp;&nbsp;제한 시간&nbsp;&nbsp;: 해당 브레베의 제한시간을 보여줍니다.<br />
+&nbsp;&nbsp;출발 시간&nbsp;&nbsp;: 브레베의 첫 출발 시간을 보여줍니다.<br />
+&nbsp;&nbsp;출발 삭제&nbsp;&nbsp;: 현재 시간을 보여줍니다.<br />
+&nbsp;&nbsp;<h4>현황 표시</h4>
+&nbsp;&nbsp;출발&nbsp;&nbsp;: 출발 시간대를 보여줍니다.<br />
+&nbsp;&nbsp;마감&nbsp;&nbsp;: 해당 출발의 마감 시간을 보여줍니다.<br />
+&nbsp;&nbsp;경과&nbsp;&nbsp;: 해당 출발의 경과 시간을 보여줍니다.<br />
+&nbsp;&nbsp;남음&nbsp;&nbsp;: 해당 출발의 남은 시간을 보여줍니다.<br /><br />
+&nbsp;&nbsp;원하는 출발을 누르면 해당 출발만 강조하여 보여줍니다.<br />
+&nbsp;&nbsp;출발 현황 표의 아무 곳이나 누르면 다시 원래 표시로 돌아옵니다.<br /><br />
+&nbsp;&nbsp;마감 시간이 지난 출발은 어두운 색으로 변합니다.<br /><br /><br />
+<h3>기타</h3>
+&nbsp;&nbsp;시간 글꼴 크기: 경과시간 표시 탭에서 출발시간, 현재시간의 글꼴 크기를 조정합니다.<br />
+&nbsp;&nbsp;현황 글꼴 크기: 경과시간 표시 탑에서 출발, 마감, 경과, 남음 글꼴 크기를 조정합니다.<br /><br /><br />
+<h3>도움말</h3>
+&nbsp;&nbsp;지금 보이는 이 화면입니다.<br /><br /><br />
+<h3>Copyright</h3>
+&nbsp;&nbsp;Date&nbsp;&nbsp;&nbsp;&nbsp;: 2024. 3. 26. Tue.<br />
+&nbsp;&nbsp;Author&nbsp;: SJ Park, Randonneur<br />
+&nbsp;&nbsp;Rev&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 1.02<br /><br /><br />
+
+</div>
+
+
+<script>
+let onlyOneView = 0;
+let fontSize1 = 32;
+let fontSize2 = 32;
+let entryLen = 1;
+let isCookieLoaded = false;
+
+function toggleView(t) {
+  const table = document.getElementById('statusTable');
+  const len = table.rows.length;
+  const pos = t.rowIndex;
+
+  if (onlyOneView==0) {
+    for (i=2;i<len;i++) {
+      if (i!=pos) {
+        setClassName(table.rows[i],3);
+      } else {
+        setClassName(table.rows[pos].cells[2],4);
+      }
+    }
+    onlyOneView = 1;
+    callClock();
+    return;
+  }
+
+  for (i=2;i<len;i++) {
+    setClassName(table.rows[i],i%2);
+    table.rows[i].cells[2].className=""
+  }
+  onlyOneView = 0;
+  callClock();
+}
+
+function setClassName(e,n) {
+  switch(n){
+    case 0:e.className="evenline";break;
+    case 1:e.className="oddline";break;
+    case 2:e.className="expired";break;
+    case 3:e.className="grayed";break;
+    case 4:e.className="highlight";break;
+    default:break;    
+  }
+}
+
+function buildTimeStr(n,start, now, limit, elem) {
+  var d = start.getDate();
+  var h = start.getHours();
+  var min = start.getMinutes();
+  var disp = `${h}:${min<10?`0${min}`:min}`
+  elem.cells[0].innerText=disp;
+  /* elem.cells[0].button.innerText = disp; */
+  
+  var ms = start.getTime()+limit*60*60000;
+  var newTime = new Date(ms);
+  h=newTime.getHours();
+  min =newTime.getMinutes(); 
+  elem.cells[1].innerText=`${h}:${min<10?`0${min}`:min}`;
+  
+  var delta = diffGetTime(start, now);
+  if (delta<0) {
+    var past=-delta+59;
+    var sign1="-";
+  } else {
+    var past=delta;
+    var sign1="";
+  }
+  h=Math.floor(past/3600);
+  min=Math.floor((past-h*3600)/60);
+  elem.cells[2].innerText=sign1+`${h}:${min<10?`0${min}`:min}`;
+  
+  limit=limit*3600+60;
+  delta = limit-delta;
+  if (delta<0) {
+    delta=-delta+60;
+    var sign="-";
+    if(onlyOneView==0)setClassName(elem,2);
+  } else {
+    var sign="";
+    if(onlyOneView==0)setClassName(elem,n%2);
+  }
+  h = Math.floor(delta/3600);
+  min = Math.floor((delta-h*3600)/60);
+  if (sign1=="-") {
+    elem.cells[3].innerText="--";
+  } else {
+    elem.cells[3].innerText=sign+`${h}:${min<10?`0${min}`:min}`;
+  }
+}
+
+function addEntry(event, how) {
+  const table = document.getElementById('statusTable');
+  const minLen = 3;
+  const maxLen =11;
+  var len = table.rows.length;
+  
+  if (how==1 && len<maxLen) {
+    const sDiff = document.getElementById('startGap').value;
+    if (sDiff==0) {
+      return;
+    }
+    const newRow = table.insertRow(len);
+    setClassName(newRow,len%2);
+    newRow.onclick = function(){ return function(){toggleView(this);};}(newRow);
+    
+    const newCell1 = newRow.insertCell(0);
+    newRow.insertCell(1);
+    newRow.insertCell(2);
+    newRow.insertCell(3);
+    newCell1.innerText = '.';
+  }
+  
+  if (how==-1 && len > minLen) {
+    table.deleteRow(len-1);
+  }
+  
+  if (event != null) {
+    entryLen = table.rows.length - 2;
+    console.log("entry length = ", entryLen);
+    saveSettings();
+    callClock();
+  }
+}
+
+function changeStylesheetRule(stylesheet, selector, property, value) {
+	selector = selector.toLowerCase();
+	property = property.toLowerCase();
+	value = value.toLowerCase();
+
+	for(var i = 0; i < stylesheet.cssRules.length; i++) {
+		var rule = stylesheet.cssRules[i];
+		if(rule.selectorText === selector) {
+			rule.style[property] = value;
+			return;
+		}
+	}
+	stylesheet.insertRule(selector + " { " + property + ": " + value + "; }", 0);
+}
+
+function setClockTableFontSize(s) {
+  var px = `${s}px`;
+  s= s*0.6;
+  if (s<20) s=20;
+  var px2= `${s}px`;
+  changeStylesheetRule(document.styleSheets[0], ".title1", "font-size", px);
+  changeStylesheetRule(document.styleSheets[0], ".title2", "font-size", px);
+  document.getElementById("infotable1").style.marginBottom=px2;
+  document.getElementById("infotable2").style.marginBottom=px2;
+}
+  
+function setMainTableFontSize(s) {
+  /* changeStylesheetRule(document.styleSheets[0], ".highlight", "color", "green"); */
+  var px = `${s}px`;
+  s= s*1.3;
+  var px2= `${s}px`;
+  changeStylesheetRule(document.styleSheets[0], ".highlight", "font-size", px2);
+  changeStylesheetRule(document.styleSheets[0], ".evenline", "font-size", px);
+  changeStylesheetRule(document.styleSheets[0], ".oddline", "font-size", px);
+  changeStylesheetRule(document.styleSheets[0], ".expired", "font-size", px);
+  changeStylesheetRule(document.styleSheets[0], ".grayed", "font-size", px);
+  changeStylesheetRule(document.styleSheets[0], ".titleline", "font-size", px);
+  /* console.log("`${s}px`"); */
+}
+  
+function callClock() {
+  setClockTableFontSize(document.getElementById('fontSize1').value);
+  setMainTableFontSize(document.getElementById('fontSize2').value);
+
+  var now = new Date();
+  var yy = document.getElementById("year").value;
+  var mm = Number(document.getElementById("month").value);
+  var dd = document.getElementById("date").value;
+  var hh = document.getElementById("hour").value;
+  var min = document.getElementById("minute").value;
+  
+  startTime = new Date(yy,mm, dd, hh, min);
+  document.getElementById("start").innerText =` ${mm+1}월 ${dd}일 ${hh<10?`0${hh}`:hh}:${min<10?`0${min}`:min}:00`;
+  
+  var month = now.getMonth();
+  var date = now.getDate();
+  var hours = now.getHours();
+  var minutes = now.getMinutes();
+  var seconds = now.getSeconds();
+  
+  document.getElementById("current").innerText = 
+  ` ${month+1}월 ${date}일 ${hours<10?`0${hours}`:hours}:${minutes<10?`0${minutes}`:minutes}:${seconds<10?`0${seconds}`:seconds}`;
+  
+  const table = document.getElementById('statusTable');
+  const len = table.rows.length; 
+  const sDiff = document.getElementById('startGap').value;
+  const limitTime = document.getElementById('brevetKind').value;
+  for (i=2;i<len;i++) {
+    var ms = startTime.getTime() + sDiff*(i-2)*60000;
+    //var ms = startTime.getTime()+1000;
+    var sTime = new Date(ms);
+    buildTimeStr(i,sTime,now,limitTime,table.rows[i]);
+  }
+}
+
+function diffGetTime(date1, date2) {
+  var diff = (date2.getTime() - date1.getTime())/1000;
+  return Math.floor(diff);
+}
+
+function initStartTime() {
+  var now = new Date();
+  var year = now.getFullYear();
+  var month = now.getMonth();
+  var date = now.getDate();
+  var hour = 6;
+  var minute = 0;
+  
+  document.getElementById("year").value = year;
+  document.getElementById("month").value = month;
+  document.getElementById("date").value = date;
+  document.getElementById("hour").value = hour;
+  document.getElementById("minute").value = minute;
+  
+  document.getElementById("startGap").value = 30;
+
+  document.getElementById("fontSize1").value = fontSize1;
+  document.getElementById("fontSize2").value = fontSize2;
+}
+    
+function openTab(evt, tabName) {
+  var i, tabcontent, tablinks;
+  
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+    tablinks[i].style.backgroundColor = "gray";
+  }
+
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
+  evt.currentTarget.style.backgroundColor = "yellow";
+
+  var target = document.getElementById("brevetKind");
+  target.options[target.selectedIndex].text;
+  document.getElementById("brevetKindDisp").innerText = target.options[target.selectedIndex].text;
+  document.getElementById("timeLimitDisp").innerText = document.getElementById('brevetKind').value+"시간";
+
+  callClock();
+}      
+
+// 설정을 쿠키에 저장하는 함수
+function saveSettings() {
+    const settings = {
+        brevetType: document.getElementById('brevetKind').value,
+        startInterval: document.getElementById('startGap').value,
+        year: document.getElementById('year').value,
+        month: document.getElementById('month').value,
+        day: document.getElementById('date').value,
+        hour: document.getElementById('hour').value,
+        minute: document.getElementById('minute').value,
+
+        entryLen: entryLen,
+
+        fontSize1: document.getElementById('fontSize1').value,
+        fontSize2: document.getElementById('fontSize2').value
+    };
+    
+    liveTick = 86400e3*(document.getElementById('brevetKind').value*(1.5/24.));
+    document.cookie = `brevetSettings=${JSON.stringify(settings)}; expires=${new Date(Date.now() + liveTick).toUTCString()}; path=/`;
+    console.log("Saving font sizes:", fontSize1, fontSize2);
+    console.log("cookie expires = ", liveTick/1000);
+}
+
+// 쿠키에서 설정을 불러오는 함수
+function loadSettings() {
+    const cookies = document.cookie.split(';');
+    const brevetSettingsCookie = cookies.find(cookie => cookie.trim().startsWith('brevetSettings='));
+    
+    if (brevetSettingsCookie) {
+        const settings = JSON.parse(brevetSettingsCookie.split('=')[1]);
+        
+        document.getElementById('brevetKind').value = settings.brevetType;
+        document.getElementById('startGap').value = settings.startInterval;
+        document.getElementById('year').value = settings.year;
+        document.getElementById('month').value = settings.month;
+        document.getElementById('date').value = settings.day;
+        document.getElementById('hour').value = settings.hour;
+        document.getElementById('minute').value = settings.minute;
+
+        document.getElementById('fontSize1').value = settings.fontSize1;
+        document.getElementById('fontSize2').value = settings.fontSize2;
+        fontSize1 = settings.fontSize1;
+        fontSize2 = settings.fontSize2;
+
+        entryLen = settings.entryLen;
+        console.log("Loading font sizes:", fontSize1, fontSize2);
+
+        isCookieLoaded = true;
+    }
+}
+
+function cookieHaldling() {
+  /* window.addEventListener('load', loadSettings); */
+  loadSettings();
+
+  // 설정 변경 시 저장하기
+  const settingInputs = document.querySelectorAll('#Setting select, #etcEtc select');
+  settingInputs.forEach(input => {
+      input.addEventListener('change', saveSettings);
+  });
+}
+
+/* ToDo: Focus Setting tab if cookie does not exist/expired.
+ */
+function main() {
+  cookieHaldling();
+      
+  if (isCookieLoaded === false) {
+    // ToDo: initial tab is Setting tab
+    initStartTime();
+  }
+  
+  document.getElementById("statusTable").insertRow(0);
+  for (i=0; i<entryLen-1; i++) {
+    addEntry(null, 1);
+  }
+
+  callClock();
+  setInterval(callClock, 1000); // 1초마다 실행
+
+  document.getElementById("defaultOpen").click();
+}
+
+main();
+</script>
+</body>
+</html>
