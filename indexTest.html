@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Audax Seoul, South Korea</title>
-    <style>table{border-collapse:collapse;font-size:x-large;border-style:ridge;}
+    <style>
+    table{border-collapse:collapse;font-size:x-large;border-style:ridge;}
     td{border-color:lightgray;border-width:5px;border-style:ridge;text-align:center;}
     .select{font-size:x-large;background:peachpuff;border:2px solid sandybrown;border-radius:6px;padding:2px;}
     .addDel{font-size:x-large;background:peachpuff;border:2px solid sandybrown;border-radius:6px;padding:2px;}
@@ -22,7 +23,52 @@
     .grayed{text-align:center;background-color:#666666;color:#336666;}
     .tdselect{padding:7px 0px 5px 0px;}
     font-size:x-large;
-    </style>
+
+body {
+  font-family: Helvetica, sans-serif;
+  padding: 5%;
+}
+
+#slideshow {
+  text-align: center;
+  overflow: hidden;
+  height: 700px;
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.slide-wrapper {
+  width: 5100px;
+  -webkit-animation: slide 24s ease infinite;
+}
+
+.slide {float: left;height: 700px;width: 1000px;}
+
+.slide:nth-child(1) {background: #d8bfc6;}
+.slide:nth-child(2) {background: #bbdbdf;}
+.slide:nth-child(3) {background: #b3cfbd;}
+.slide:nth-child(4) {background: #e0ddb2;}
+.slide:nth-child(5) {background: #f3d3f0;}
+
+.slide-number {
+  color: #000;
+  text-align: center;
+  font-size: 10em;
+}
+
+@-webkit-keyframes slide {
+  15% {margin-left: 0px;}
+  20% {margin-left: -1000px;}
+  35% {margin-left: -1000px;}
+  40% {margin-left: -2000px;}
+  55% {margin-left: -2000px;}
+  60% {margin-left: -3000px;}
+  75% {margin-left: -3000px;}
+  80% {margin-left: -4000px;}
+  95% {margin-left: -4000px;}
+  100% {margin-left: 0px;}
+}
+</style>
 </head>
 <body>
 
@@ -38,6 +84,33 @@
 <figcaption>서울200 photo by 밤톨</figcaption>
 </figure>
 
+<div id="slideshow">
+  <div class="slide-wrapper">
+    <div class="slide"><figure>
+      <img src="Images/밤톨1-서울200.jpg" alt="서울200 photo by 밤톨" style="max-width: 100%; height: auto;" />
+      <figcaption>서울200 photo by 밤톨</figcaption>
+      </figure></div>
+    <div class="slide"><figure>
+      <img src="Images/꼬냉이1-대구300.jpg" alt="대구300 photo by 뿔난꼬냉이" style="max-width: 100%; height: auto;" />
+      <figcaption>대구300 photo by 뿔난꼬냉이</figcaption>
+      </figure>
+    </div>
+    <div class="slide"><figure>
+      <img src="Images/꼬냉이2-대구300.jpg" alt="대구300 photo by 뿔난꼬냉이" style="max-width: 100%; height: auto;" />
+      <figcaption>대구300 photo by 뿔난꼬냉이</figcaption>
+      </figure></div>
+    <div class="slide"><figure>
+      <img src="Images/꼬냉이3-PBP.jpg" alt="2023 PBP photo by 뿔난꼬냉이" style="max-width: 100%; height: auto;" />
+      <figcaption>2023 PBP photo by 뿔난꼬냉이</figcaption>
+      </figure></div>
+    <div class="slide"><figure>
+      <img src="Images/화니1-광부광.jpg" alt="광부광 photo by 화니" style="max-width: 100%; height: auto;" />
+      <figcaption>광부광 photo by 화니</figcaption>
+      </figure></div>
+  </div>
+</div>
+
+<h1 align="center">코리아 란도너스 서울</h1>
 
 <script>
 </script>
