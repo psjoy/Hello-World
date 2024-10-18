@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Audax Seoul, South Korea</title>
+<style>
+body {font-family: Helvetica, sans-serif;}
+img {max-width: 100%; height: auto; border-radius: 20px;}
+figcaption {text-align: right; font-size: 12px; color: #8f8989;}
+
+.slideshow {position: relative;z-index: 1;}
+.slideshow img {
+  color: transparent;opacity: 0;z-index: 0;
+  animation: slideshow__fade 50s ease-in-out infinite;
+  backface-visibility: hidden;
+}
+.slideshow img:not(:first-child) {position: absolute;top: 0px;left: 0px;}
+.slideshow img:nth-child(1) {animation-delay: 0s;}
+.slideshow img:nth-child(2) {animation-delay: 10s;}
+.slideshow img:nth-child(3) {animation-delay: 20s;}
+.slideshow img:nth-child(4) {animation-delay: 30s;}
+.slideshow img:nth-child(5) {animation-delay: 40s;}
+@keyframes slideshow__fade {
+  0% {opacity: 0;animation-timing-function: ease-in-out;}
+  10.00% {opacity: 1;animation-timing-function: ease-in-out;}
+  20.00% {opacity: 1;}
+  30.00% {opacity: 0;}
+  100% {opacity: 0;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="tab"><h1 align="center">Hello Korea Randonnerus... :)</h1></div>
+<div class="slideshow">
+  <img src="Images/밤톨1-서울200.jpg" alt="서울200 photo by 밤톨"/>
+  <img src="Images/꼬냉이1-대구300.jpg" alt="대구300 photo by 뿔난꼬냉이"/>
+  <img src="Images/꼬냉이2-대구300.jpg" alt="대구300 photo by 뿔난꼬냉이"/>
+  <img src="Images/꼬냉이3-PBP.jpg" alt="2023 PBP photo by 뿔난꼬냉이"/>
+  <img src="Images/화니1-광부광.jpg" alt="광부광 photo by 화니"/>
+</div>
+
+<script>
+</script>
+</body>
+</html>
