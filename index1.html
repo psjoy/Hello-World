@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Audax Seoul, South Korea</title>
+<style>
+  body {font-family: Helvetica, sans-serif;padding: 5%;}
+  img {max-width: 100%; height: auto; border-radius: 20px;}
+  figcaption {text-align: right; font-size: 12px; color: #8f8989;}
+
+#slideshow {
+  text-align: center;
+  overflow: hidden;
+  height: 700px;
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.slide-wrapper {width: 5100px; animation: slide_left 24s ease-in-out infinite;}
+.slide {float: left;height: 700px;width: 1000px;}
+.slide:nth-child(1) {background: #ffe2ea;}
+.slide:nth-child(2) {background: #d9ffe3;}
+.slide:nth-child(3) {background: #e1ffeb;}
+.slide:nth-child(4) {background: #fffcd3;}
+.slide:nth-child(5) {background: #ffe2fc;}
+
+@keyframes slide_left {
+  15% {margin-left: 0px;}
+  20% {margin-left: -1000px;}
+  35% {margin-left: -1000px;}
+  40% {margin-left: -2000px;}
+  55% {margin-left: -2000px;}
+  60% {margin-left: -3000px;}
+  75% {margin-left: -3000px;}
+  80% {margin-left: -4000px;}
+  95% {margin-left: -4000px;}
+  100% {margin-left: 0px;}
+}
+</style>
+</head>
+<body>
+
+    
+    
+<!-- Tab links -->
+<div class="tab">
+  <h1 align="center">Hello Korea Randonnerus... :)</h1>
+</div>
+
+
+<div id="slideshow">
+  <div class="slide-wrapper">
+    <div class="slide"><figure>
+      <img src="Images/밤톨1-서울200.jpg" alt="서울200 photo by 밤톨" />
+      <figcaption>서울200 photo by 밤톨</figcaption>
+      </figure></div>
+    <div class="slide"><figure>
+      <img src="Images/꼬냉이1-대구300.jpg" alt="대구300 photo by 뿔난꼬냉이" />
+      <figcaption>대구300 photo by 뿔난꼬냉이</figcaption>
+      </figure>
+    </div>
+    <div class="slide"><figure>
+      <img src="Images/꼬냉이2-대구300.jpg" alt="대구300 photo by 뿔난꼬냉이" />
+      <figcaption>대구300 photo by 뿔난꼬냉이</figcaption>
+      </figure></div>
+    <div class="slide"><figure>
+      <img src="Images/꼬냉이3-PBP.jpg" alt="2023 PBP photo by 뿔난꼬냉이" />
+      <figcaption>2023 PBP photo by 뿔난꼬냉이</figcaption>
+      </figure></div>
+    <div class="slide"><figure>
+      <img src="Images/화니1-광부광.jpg" alt="광부광 photo by 화니" />
+      <figcaption>광부광 photo by 화니</figcaption>
+      </figure></div>
+  </div>
+</div>
+
+<script>
+</script>
+</body>
+</html>
