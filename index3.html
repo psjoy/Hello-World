@@ -1,56 +1,111 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Test3</title>
+<title>Korea Randonneurs 슬라이드쇼</title>
 <style>
-img {
-  border: 20px;
-  border-radius: 30px;
-  -webkit-filter: blur12px);
-  box-shadow: 10px 10px 8px #888888;
-  max-width: 100%; height: auto;
+body {
+  font-family: Helvetica, sans-serif;
+  padding: 2.5%;
+  margin: 0;
+  background-color: #f0f0f0;
 }
-figcaption {text-align: right; font-size: 12px; color: #8f8989;}
+.title {
+  text-align: center;
+}
 
-.fling-minislide {width:100%; height:0px; padding-bottom: 50%; overflow:hidden; position:relative; }
-.fling-minislide img{ position:absolute; animation:fling-minislide 60s infinite; opacity:0; }
+.slideshow1 {
+  width: 95%;
+  max-width: 1600px; /* 최대 너비 설정 */
+  margin: 0 auto; /* 중앙 정렬 */
+  padding-bottom: 53.4375%; /* 16:9 비율 유지 (95% * 9/16) */
+  position: relative;
+  overflow: visible;
+  /* background-color: rgb(197, 197, 250); */
+}
 
-@keyframes fling-minislide {25%{opacity:1;} 40%{opacity:0;}}
-.fling-minislide img:nth-child(1){animation-delay:0s;}
-.fling-minislide img:nth-child(2){animation-delay:15s;}
-.fling-minislide img:nth-child(3){animation-delay:30s;}
-.fling-minislide img:nth-child(4){animation-delay:45s;}
+.slideshow1 figure {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  animation: slideshow1 60s infinite;
+  opacity: 0;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 10px 10px 20px rgba(0,0,0,0.8);
+}
+
+.slideshow1 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 이미지를 채우도록 설정 */
+}
+
+figcaption {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 12px;
+  color: #fff;
+  background-color: rgba(0,0,0,0.4);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.slideshow1 figure:nth-child(1) { animation-delay: 0s; }
+.slideshow1 figure:nth-child(2) { animation-delay: 15s; }
+.slideshow1 figure:nth-child(3) { animation-delay: 30s; }
+.slideshow1 figure:nth-child(4) { animation-delay: 45s; }
+
+@keyframes slideshow1 {
+  0% { opacity: 0; fliter:blur(20px);}
+  8% { opacity: 1; filter:blur(0px);}
+  18% { opacity: 1; filter:blur(0px);}
+  25% { opacity: 0; filter:blur(20px);}
+  100% { opacity: 0; filter:blur(0px);}
+}
+
+/* 작은 화면을 위한 미디어 쿼리 */
+@media (max-width: 800px) {
+  .slideshow1 {
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 비율 */
+  }
+  
+  .slideshow1 img {
+    object-fit: contain; /* 작은 화면에서는 이미지 비율 유지 */
+  }
+}
 </style>
 </head>
-<body>
 
-<h2>Image test</h2>
-<div class="fling-minislide">
-  <figure>
+<body>
+  <div class="title">
+    <h1>안녕하세요 Korea Randonneurs... :)</h1>
+  </div>
+
+  <div class="slideshow1">
+    <figure>
     <img src="Images/밤톨1-서울200.jpg" alt="Slide 4" />
     <figcaption>서울200 photo by 밤톨</figcaption>
-  </figure>
-  <figure>
-    <img src="Images/꼬냉이1-대구300.jpg" alt="Slide 3" />
+    </figure>
+    <figure>
+    <img srcset="Images/꼬냉이1-대구300.jpg 1200w" sizes=(max-width: 100%) 1200px, 1200px" alt="Slide 3" />
     <figcaption>대구300 photo by 뿔난꼬냉이</figcaption>
-  </figure>
-  <figure>
+    </figure>
+    <figure>
     <img src="Images/꼬냉이2-대구300.jpg" alt="Slide 2" />
     <figcaption>대구300 photo by 뿔난꼬냉이</figcaption>
-  </figure>
-  <figure>
+    </figure>
+    <figure>
     <img src="Images/꼬냉이3-PBP.jpg" alt="Slide 1" />
     <figcaption>2023 PBP photo by 뿔난꼬냉이</figcaption>
-  </figure>
-</div>
-
-<figure>
-  <img src="Images/밤톨1-서울200.jpg" alt="Avatar" style="width:100%" />
-  <figcaption>서울200 photo by 밤톨</figcaption>
-</figure>
-
-<img src="Images/꼬냉이1-대구300.jpg" alt="Avatar" style="width:100%" />
-
+    </figure>
+  </div>
 </body>
-</html> 
+</html>
