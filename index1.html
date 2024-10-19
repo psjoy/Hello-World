@@ -1,82 +1,128 @@
 <!DOCTYPE html>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Test1</title>
 <style>
-  .title {text-align: center;}
-  body {font-family: Helvetica, sans-serif;padding: 5%;}
-  img {width: 1120px; height: auto; border-radius: 20px;}
-  figcaption {text-align: right; font-size: 12px; color: #8f8989;}
+  body {
+    font-family: Helvetica, sans-serif;
+    padding: 2.5%;
+    margin: 0;
+    background-color: #f0f0f0;
+  }
+  .title {
+    text-align: center;
+    max-width: 2000px;
+    margin: 0 auto;
+  }
+  #slideshow {
+    width: 100%;
+    max-width: 2000px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  }
+  .slide-wrapper {
+    width: 600%; /* 증가: 6개의 슬라이드를 수용 */
+    display: flex;
+    animation: slide_left 36s ease-in-out infinite; /* 시간 증가 */
+  }
+  .slide {
+    width: 16.666%; /* 100% / 6 */
+    flex-shrink: 0;
+  }
+  .slide figure {
+    margin: 0;
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  }
+  .slide img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  figcaption {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(0,0,0,0.6);
+    color: white;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+  }
 
-#slideshow {
-  text-align: center;
-  overflow: hidden;
-  width: 1200px;
-  height: 700px;
-  margin: 0 auto;
-}
+  @keyframes slide_left {
+    0%, 16.666% {transform: translateX(0%);}
+    20%, 36.666% {transform: translateX(-16.666%);}
+    40%, 56.666% {transform: translateX(-33.332%);}
+    60%, 76.666% {transform: translateX(-50%);}
+    80%, 96.666% {transform: translateX(-66.666%);}
+    100% {transform: translateX(-83.333%);}
+  }
 
-.slide-wrapper {width: 500%; animation: slide_left 24s ease-in-out infinite;}
-.slide {float: left;height: width: 5000px; 700px;}
-.slide:nth-child(1) {background: #ffe2ea;}
-.slide:nth-child(2) {background: #d9ffe3;}
-.slide:nth-child(3) {background: #e1ffeb;}
-.slide:nth-child(4) {background: #fffcd3;}
-.slide:nth-child(5) {background: #ffe2fc;}
+  @media (max-width: 1200px) {
+    figcaption {
+      font-size: 14px;
+      padding: 8px 12px;
+    }
+  }
 
-@keyframes slide_left {
-  15% {margin-left: 0%;}
-  20% {margin-left: -100%;}
-  35% {margin-left: -100%;}
-  40% {margin-left: -200%;}
-  55% {margin-left: -200%;}
-  60% {margin-left: -300%;}
-  75% {margin-left: -300%;}
-  80% {margin-left: -400%;}
-  95% {margin-left: -400%;}
-  100% {margin-left: 0px;}
-}
+  @media (max-width: 768px) {
+    #slideshow {
+      border-radius: 10px;
+    }
+    figcaption {
+      font-size: 12px;
+      padding: 5px 10px;
+      bottom: 10px;
+      right: 10px;
+    }
+  }
 </style>
 </head>
 <body>
-
-    
-    
-<!-- Tab links -->
-<div class="title">
-  <h1 >Hello Korea Randonnerus... :)</h1>
-</div>
-
-
-<div id="slideshow">
-  <div class="slide-wrapper">
-    <div class="slide"><figure>
-      <img src="Images/밤톨1-서울200.jpg" alt="서울200 photo by 밤톨" />
-      <figcaption>서울200 photo by 밤톨</figcaption>
-      </figure></div>
-    <div class="slide"><figure>
-      <img src="Images/꼬냉이1-대구300.jpg" alt="대구300 photo by 뿔난꼬냉이" />
-      <figcaption>대구300 photo by 뿔난꼬냉이</figcaption>
-      </figure>
-    </div>
-    <div class="slide"><figure>
-      <img src="Images/꼬냉이2-대구300.jpg" alt="대구300 photo by 뿔난꼬냉이" />
-      <figcaption>대구300 photo by 뿔난꼬냉이</figcaption>
-      </figure></div>
-    <div class="slide"><figure>
-      <img src="Images/꼬냉이3-PBP.jpg" alt="2023 PBP photo by 뿔난꼬냉이" />
-      <figcaption>2023 PBP photo by 뿔난꼬냉이</figcaption>
-      </figure></div>
-    <div class="slide"><figure>
-      <img src="Images/화니1-광부광.jpg" alt="광부광 photo by 화니" />
-      <figcaption>광부광 photo by 화니</figcaption>
-      </figure></div>
+  <div class="title">
+    <h1>안녕하세요 Korea Randonneurs... :)</h1>
   </div>
-</div>
 
-<script>
-</script>
+  <div id="slideshow"><div id="slideshow">
+    <div class="slide-wrapper">
+      <div class="slide"><figure>
+        <img src="Images/밤톨1-서울200.jpg" alt="서울200 photo by 밤톨" />
+        <figcaption>서울200 photo by 밤톨</figcaption>
+        </figure></div>
+      <div class="slide"><figure>
+        <img src="Images/꼬냉이1-대구300.jpg" alt="대구300 photo by 뿔난꼬냉이" />
+        <figcaption>대구300 photo by 뿔난꼬냉이</figcaption>
+        </figure>
+      </div>
+      <div class="slide"><figure>
+        <img src="Images/꼬냉이2-대구300.jpg" alt="대구300 photo by 뿔난꼬냉이" />
+        <figcaption>대구300 photo by 뿔난꼬냉이</figcaption>
+        </figure></div>
+      <div class="slide"><figure>
+        <img src="Images/꼬냉이3-PBP.jpg" alt="2023 PBP photo by 뿔난꼬냉이" />
+        <figcaption>2023 PBP photo by 뿔난꼬냉이</figcaption>
+        </figure></div>
+      <div class="slide"><figure>
+        <img src="Images/화니1-광부광.jpg" alt="광부광 photo by 화니" />
+        <figcaption>광부광 photo by 화니</figcaption>
+        </figure></div>
+    <!-- 첫 번째 슬라이드 복제 -->
+    <div class="slide"><figure>
+        <img src="Images/밤톨1-서울200.jpg" alt="서울200 photo by 밤톨" />
+        <figcaption>서울200 photo by 밤톨</figcaption>
+        </figure></div>
+    </div>
+  </div>
+  
 </body>
 </html>
