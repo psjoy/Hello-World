@@ -19,9 +19,12 @@ body {
   width: 95%;
   max-width: 1600px; /* 최대 너비 설정 */
   margin: 0 auto; /* 중앙 정렬 */
-  padding-bottom: 53.4375%; /* 16:9 비율 유지 (95% * 9/16) */
+  /* padding-bottom: 53.4375%; 16:9 비율 유지 (95% * 9/16) */
+  /* padding-bottom: 45.4545%; 2.2:1 */
+  padding-bottom: 45.4545%;   /* 2.35:1 */
   position: relative;
   overflow: visible;
+  z-index:1;
   /* background-color: rgb(197, 197, 250); */
 }
 
@@ -33,8 +36,10 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  animation: slideshow1 60s infinite;
+  animation: slideshow1 75s ease-in-out infinite;
+  backface-visibility: hidden;
   opacity: 0;
+  z-index: 0;
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 10px 10px 20px rgba(0,0,0,0.8);
@@ -52,21 +57,23 @@ figcaption {
   right: 10px;
   font-size: 12px;
   color: #ccc;
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0,0,0,0.35);
   padding: 5px;
   border-radius: 5px;
 }
 
-.slideshow1 figure:nth-child(1) { animation-delay: 0s; }
-.slideshow1 figure:nth-child(2) { animation-delay: 15s; }
-.slideshow1 figure:nth-child(3) { animation-delay: 30s; }
-.slideshow1 figure:nth-child(4) { animation-delay: 45s; }
+.slideshow figure:not(:first-child) {position: absolute;top: 0px;left: 0px;}
+.slideshow1 figure:nth-child(1) { animation-delay: 0s;}
+.slideshow1 figure:nth-child(2) { animation-delay: 15s;}
+.slideshow1 figure:nth-child(3) { animation-delay: 30s;}
+.slideshow1 figure:nth-child(4) { animation-delay: 45s;}
+.slideshow1 figure:nth-child(5) { animation-delay: 60s;}
 
 @keyframes slideshow1 {
-  0% { opacity: 0; fliter:blur(20px);}
-  8% { opacity: 1; filter:blur(0px);}
-  18% { opacity: 1; filter:blur(0px);}
-  25% { opacity: 0; filter:blur(20px);}
+  0% { opacity: 0; fliter:blur(20px);animation-timing-function: ease-in;}
+  10% { opacity: 1; filter:blur(0px);animation-timing-function: ease-out;}
+  20% { opacity: 1; filter:blur(0px);}
+  30% { opacity: 0; filter:blur(20px);}
   100% { opacity: 0; filter:blur(0px);}
 }
 
@@ -106,6 +113,11 @@ figcaption {
     <img src="Images/꼬냉이3-PBP.jpg" alt="Slide 1" />
     <figcaption>2023 PBP photo by 뿔난꼬냉이</figcaption>
     </figure>
+    <figure>
+    <img src="Images/화니1-광부광.jpg" alt="광부광 photo by 화니" />
+    <figcaption>광부광 photo by 화니</figcaption>
+    </figure>
   </div>
+
 </body>
 </html>
