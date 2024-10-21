@@ -141,7 +141,7 @@
             lastScrollY = window.scrollY;
             lastScrollX = window.scrollX;
 
-            // current window scroll amount
+            // current window scroll amount 
             console.log("lastScrollXY: ", lastScrollX, lastScrollY);
 
             const thumbnail = document.getElementById(imgId);
@@ -204,8 +204,10 @@
 
                 popupImg.style.width = `${rect.width}px`;
                 popupImg.style.height = `${rect.height}px`;
-                popupImg.style.top = `${rect.top + window.pageYOffset}px`;
+                popupImg.style.top = `${rect.top}px`;
                 popupImg.style.left = `${rect.left}px`;
+
+                console.log("Close wh xy: ", popupImg.style.width, popupImg.style.height, popupImg.style.left, popupImg.style.top);
 
                 // 배경색 변경을 위한 클래스 제거
                 popup.classList.remove('active');
