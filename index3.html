@@ -79,26 +79,20 @@
     </div>
     <div class="image-container">
         <a href="#popup3" data-popup-id="popup3">
-            <figure><img id="img3" src="courses/S-200K-Y/Map_S-200K-Y.png" alt="Image 3" />
-            <figcaption>서울 양주200 코스</figcaption></figure>
+            <figure><img id="img3" src="courses/S-300K-e/Map_S-300K-e_240314.png" alt="Image 3" />
+            <figcaption>서울(동)300 코스</figcaption></figure>
         </a>
     </div>
     <div class="image-container">
         <a href="#popup4" data-popup-id="popup4">
-            <figure><img id="img4" src="courses/S-200K-Y/Controls_S-200K-Y.png" alt="Image 4" />
-            <figcaption>서울 양주200 기준점 정보</figcaption></figure>
+            <figure><img id="img4" src="courses/S-300K-e/Controls_S-300K-e1.png" alt="Image 4" />
+            <figcaption>서울(동) 300 기준점 정보 1</figcaption></figure>
         </a>
     </div>
     <div class="image-container">
         <a href="#popup5" data-popup-id="popup5">
-            <figure><img id="img5" src="courses/S-200K-Y/Map_S-200K-Y.png" alt="Image 5" />
-            <figcaption>서울 양주200 코스</figcaption></figure>
-        </a>
-    </div>
-    <div class="image-container">
-        <a href="#popup6" data-popup-id="popup6">
-            <figure><img id="img6" src="courses/S-200K-Y/Controls_S-200K-Y.png" alt="Image 6" />
-            <figcaption>서울 양주200 기준점 정보</figcaption></figure>
+            <figure><img id="img5" src="courses/S-300K-e/Controls_S-300K-e2.png" alt="Image 5" />
+            <figcaption>서울(동) 300 기준점 정보 2</figcaption></figure>
         </a>
     </div>
 
@@ -112,19 +106,15 @@
     </div>
     <div id="popup3" class="popup">
         <a href="#" class="close">&times;</a>
-        <img src="courses/S-200K-Y/Map_S-200K-Y.png" alt="Image 3" />
+        <img src="courses/S-300K-e/Map_S-300K-e_240314.png" alt="Image 3" />
     </div>
     <div id="popup4" class="popup">
         <a href="#" class="close">&times;</a>
-        <img src="courses/S-200K-Y/Controls_S-200K-Y.png" alt="Image 4" />
+        <img src="courses/S-300K-e/Controls_S-300K-e1.png" alt="Image 4" />
     </div>
     <div id="popup5" class="popup">
         <a href="#" class="close">&times;</a>
-        <img src="courses/S-200K-Y/Map_S-200K-Y.png" alt="Image 5" />
-    </div>
-    <div id="popup6" class="popup">
-        <a href="#" class="close">&times;</a>
-        <img src="courses/S-200K-Y/Controls_S-200K-Y.png" alt="Image 6" />
+        <img src="courses/S-300K-e/Controls_S-300K-e2.png" alt="Image 5" />
     </div>
 
     <script>
@@ -150,6 +140,10 @@
         function setPopupPosition(popupId, imgId) {
             lastScrollY = window.scrollY;
             lastScrollX = window.scrollX;
+
+            // current window scroll amount
+            console.log("lastScrollXY: ", lastScrollX, lastScrollY);
+
             const thumbnail = document.getElementById(imgId);
             const popup = document.getElementById(popupId);
             const popupImg = popup.querySelector('img');
@@ -165,6 +159,9 @@
             popupImg.style.top = `${rect.top}px`;
             popupImg.style.left = `${rect.left}px`;
             popupImg.style.transform = 'none';
+
+            // initial image size xy, window pos left, top
+            console.log("Initial wh xy: ", popupImg.style.width, popupImg.style.height, popupImg.style.left, popupImg.style.top);
 
             // 팝업 표시
             popup.style.visibility = 'visible';
